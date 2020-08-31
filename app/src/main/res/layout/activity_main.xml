@@ -29,18 +29,19 @@
             android:layout_height="match_parent" >
         </FrameLayout>
     </LinearLayout>
-    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:src="@drawable/ic_message"
         android:foregroundGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="#6200EE"
+        android:backgroundTint="#B8E1E6"
         app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="paren"
-        tools:ignore="VectorDrawableCompat" />
--->
+        app:layout_constraintStart_toStartOf="parent"
+       />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

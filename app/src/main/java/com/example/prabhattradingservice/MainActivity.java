@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.prabhattradingservice.Fragments.About_us_fragment;
@@ -36,13 +37,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-      /*  floatingActionButton=findViewById(R.id.floatingActionButton);
+    floatingActionButton=findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });*/
+        });
 
         mDrawerLayout=findViewById(R.id.drawer_layout);
         NavigationView navigationView=findViewById(R.id.navigation_view);
