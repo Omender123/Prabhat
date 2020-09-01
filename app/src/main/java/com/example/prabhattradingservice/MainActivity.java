@@ -11,13 +11,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.prabhattradingservice.Fragments.About_us_fragment;
-import com.example.prabhattradingservice.Fragments.Contact_us_fragment;
+import com.example.prabhattradingservice.Fragments.Contact_Us;
 import com.example.prabhattradingservice.Fragments.Gallery_fragment;
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.Fragments.Payment_fragment;
@@ -28,7 +29,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton message,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +38,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-    floatingActionButton=findViewById(R.id.floatingActionButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        message=findViewById(R.id.message);
+        phone=findViewById(R.id.phone);
+        message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:+919667709742"));
+                startActivity(intent);
+            }
+        });
         mDrawerLayout=findViewById(R.id.drawer_layout);
         NavigationView navigationView=findViewById(R.id.navigation_view);
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(
@@ -76,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             super.onBackPressed();
         }
+
     }
 
     @Override
@@ -113,10 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Welcome to Payment Details", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_contact:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Contact_us_fragment())
-                        .commit();
-                Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
+               startActivity(new Intent(MainActivity.this, Contact_Us.class));
+               Toast.makeText(this, "Welcome to Contact Us", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_about:
@@ -145,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }else {
             startActivity(new Intent(getApplicationContext(),ErrorScreen.class));
+            finish();
             Toast.makeText(this, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
         }
     }

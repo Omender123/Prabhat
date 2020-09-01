@@ -29,7 +29,7 @@
           <group android:checkableBehavior="single">
               <item android:title="Contact Us"
               android:id="@+id/nav_contact"
-              android:icon="@drawable/ic_conversation"
+              android:icon="@drawable/phone"
               />
 
               <item

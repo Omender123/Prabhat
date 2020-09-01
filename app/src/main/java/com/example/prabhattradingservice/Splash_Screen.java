@@ -1,7 +1,13 @@
 package com.example.prabhattradingservice;
 
+
+
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -11,6 +17,8 @@ private static  int SPLASH_SCREEN=2000;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash__screen);
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
