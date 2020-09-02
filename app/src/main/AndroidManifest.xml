@@ -15,9 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Fragments.Contact_Us"
-            android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+        <activity android:name=".MenuActivity.Training"></activity>
+        <activity android:name=".MenuActivity.Video" />
+        <activity android:name=".MenuActivity.Gallery" />
+        <activity android:name=".MenuActivity.Payment" />
+        <activity android:name=".MenuActivity.About_us" />
+        <activity
+            android:name=".MenuActivity.Contact_Us"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Splash_Screen"
             android:theme="@style/AppTheme.NoActionBar1">
@@ -29,7 +34,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ErrorScreen"
             android:theme="@style/AppTheme.NoActionBar" />

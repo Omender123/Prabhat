@@ -17,13 +17,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.prabhattradingservice.Fragments.About_us_fragment;
-import com.example.prabhattradingservice.Fragments.Contact_Us;
-import com.example.prabhattradingservice.Fragments.Gallery_fragment;
+import com.example.prabhattradingservice.MenuActivity.About_us;
+import com.example.prabhattradingservice.MenuActivity.Contact_Us;
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
-import com.example.prabhattradingservice.Fragments.Payment_fragment;
-import com.example.prabhattradingservice.Fragments.Training_fragment;
-import com.example.prabhattradingservice.Fragments.Video_fragment;
+import com.example.prabhattradingservice.MenuActivity.Gallery;
+import com.example.prabhattradingservice.MenuActivity.Payment;
+import com.example.prabhattradingservice.MenuActivity.Training;
+import com.example.prabhattradingservice.MenuActivity.Video;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -99,27 +99,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_training:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Training_fragment())
-                        .commit();
+                startActivity(new Intent(MainActivity.this, Training.class));
                 Toast.makeText(this, "Welcome to Training", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_video:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Video_fragment())
-                        .commit();
+                startActivity(new Intent(MainActivity.this, Video.class));
                 Toast.makeText(this, "Welcome to Video", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_Gallery:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Gallery_fragment())
-                        .commit();
+                startActivity(new Intent(MainActivity.this, Gallery.class));
                 Toast.makeText(this, "Welcome to Gallery", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_payment:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new Payment_fragment())
-                        .commit();
+                startActivity(new Intent(MainActivity.this, Payment.class));
                 Toast.makeText(this, "Welcome to Payment Details", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_contact:
@@ -128,9 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_about:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_Container,new About_us_fragment())
-                        .commit();
+                startActivity(new Intent(MainActivity.this, About_us.class));
                 Toast.makeText(this, "Welcome to About_us", Toast.LENGTH_SHORT).show();
 
                 break;

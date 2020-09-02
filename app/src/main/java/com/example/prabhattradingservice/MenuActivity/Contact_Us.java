@@ -1,4 +1,4 @@
-package com.example.prabhattradingservice.Fragments;
+package com.example.prabhattradingservice.MenuActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 
+import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.R;
 
 public class Contact_Us extends AppCompatActivity {
@@ -51,8 +52,14 @@ Animation animation;
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId()==android.R.id.home){
             finish();
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
     }
 }
