@@ -2,14 +2,21 @@ package com.example.prabhattradingservice.Fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 
+import com.example.prabhattradingservice.Adapter.ImageAdapter;
 import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
+import com.example.prabhattradingservice.Model.ModelData;
 import com.example.prabhattradingservice.R;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -18,6 +25,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Home_Fragment extends Fragment {
+    String [] name={"First","second","Third","Forth"};
+    String [] name1={"First1","second1","Third1","Forth1"};
+
 
     // page Slider
     private static ViewPager mpage;
@@ -27,6 +37,11 @@ public class Home_Fragment extends Fragment {
     private static final Integer[] Images={R.mipmap.first,R.mipmap.second,R.mipmap.thrid,R.mipmap.forth};
     private ArrayList<Integer> ImageArray=new ArrayList<Integer>();
 
+    // recyclerView
+    RecyclerView recyclerView;
+    ImageAdapter recyclerViewAdapter;
+    ArrayList<ModelData>ModelData;
+    RecyclerView.LayoutManager layoutManager;
 
 
     public Home_Fragment() {
@@ -40,9 +55,13 @@ public class Home_Fragment extends Fragment {
       View view= inflater.inflate(R.layout.fragment_home_, container, false);
 
         mpage=view.findViewById(R.id.pager);
+      // recyclerView=view.findViewById(R.id.recycleImage);
+       // recyclerView.setHasFixedSize(true);
+
         indicator = (CirclePageIndicator)view.findViewById(R.id.indicator);
 
         init();
+       // getImage();
   return view;  }
 
     private void init() {
@@ -102,6 +121,17 @@ public class Home_Fragment extends Fragment {
         });
 
     }
+private void getImage(){
 
+    layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, true);
+    recyclerView.setLayoutManager(layoutManager);
+    recyclerView.setItemAnimator(new DefaultItemAnimator());
+    ModelData =new ArrayList<ModelData>();
+    for (int i=0;i<name.length;i++){
+        ModelData.add(new ModelData(name[i],name1[i],Images[i]));
+    }
+    recyclerViewAdapter=new ImageAdapter(ModelData,getContext());
+    recyclerView.setAdapter(recyclerViewAdapter);
+    }
 
 }

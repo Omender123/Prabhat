@@ -9,12 +9,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.prabhattradingservice.MenuActivity.About_us;
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+               startActivity(new Intent(MainActivity.this,QueryForm.class));
             }
         });
         phone.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         checkConnection();
+        changeStatusBarColor();
     }
 
 
@@ -147,4 +152,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
         }
     }
+    private void changeStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
 }

@@ -9,13 +9,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/lodo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/lodo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MenuActivity.Training"></activity>
+        <activity android:name=".QueryForm"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MenuActivity.Training" />
         <activity android:name=".MenuActivity.Video" />
         <activity android:name=".MenuActivity.Gallery" />
         <activity android:name=".MenuActivity.Payment" />

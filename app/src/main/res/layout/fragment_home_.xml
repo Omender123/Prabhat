@@ -40,20 +40,36 @@
             app:pageColor="@color/colorPrimaryDark"
             app:snap="false" />
     </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_scroll_stock"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="@dimen/space5"
+            />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@color/grey_light_secondary" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rec_scroll_stock"
+
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="vertical" />
+            android:layout_height="180dp"
+            android:src="@mipmap/premium"
+            android:layout_margin="@dimen/space5"
+            android:padding="2dp"/>
+<!--
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleImage"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/space5"
+           />-->
     </LinearLayout>
-
-
-
 
 </ScrollView>
