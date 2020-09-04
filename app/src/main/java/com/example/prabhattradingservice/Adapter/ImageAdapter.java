@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prabhattradingservice.Model.ModelData;
@@ -22,7 +25,7 @@ public class ImageAdapter extends  RecyclerView.Adapter<ImageAdapter.MyHolder> {
     Context context;
 
     public ImageAdapter(ArrayList<ModelData> imageModals, Context context) {
-        ImageModals = imageModals;
+        this.ImageModals = imageModals;
         this.context = context;
     }
 
@@ -37,9 +40,19 @@ public class ImageAdapter extends  RecyclerView.Adapter<ImageAdapter.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+        final Animation[] animation = new Animation[1];
+
         holder.firstTxt.setText(ImageModals.get(position).getFirstTxt());
         holder.secondTxt.setText(ImageModals.get(position).getSecondTxt());
         holder.image.setImageResource(ImageModals.get(position).getImages());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                animation[0] = AnimationUtils.loadAnimation(context,R.anim.animation);
+                holder.cardView.startAnimation(animation[0]);
+            }
+        });
 
         //Picasso.get().load(ImageModals.get(position).getImage()).into(holder.image);
 
@@ -48,10 +61,11 @@ public class ImageAdapter extends  RecyclerView.Adapter<ImageAdapter.MyHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return ImageModals.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{
+        public CardView cardView;
         public TextView firstTxt,secondTxt;
         public ImageView image;
         public MyHolder(@NonNull View itemView) {
@@ -59,6 +73,7 @@ public class ImageAdapter extends  RecyclerView.Adapter<ImageAdapter.MyHolder> {
             firstTxt=itemView.findViewById(R.id.firstTxt);
             secondTxt=itemView.findViewById(R.id.secondTxt);
             image=itemView.findViewById(R.id.imageLogo);
+            cardView=itemView.findViewById(R.id.cardView);
         }
     }
 }

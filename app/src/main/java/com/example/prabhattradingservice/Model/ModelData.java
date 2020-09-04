@@ -12,13 +12,15 @@ private int Images;
     }*/
 
     public ModelData(String firstTxt, String secondTxt, Integer images) {
-        FirstTxt = firstTxt;
-        SecondTxt = secondTxt;
-        Images = images;
+        this.FirstTxt = firstTxt;
+        this.SecondTxt = secondTxt;
+        this.Images = images;
     }
 
     public ModelData() {
     }
+
+
 
    /* public String getImage() {
         return Image;

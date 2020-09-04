@@ -17,14 +17,17 @@
         android:layout_margin="5dp"/>
     <RelativeLayout
         android:layout_marginTop="3dp"
-        android:layout_width="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_margin="1dp"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            />
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
@@ -60,16 +63,108 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:src="@mipmap/premium"
-            android:layout_margin="@dimen/space5"
+            android:layout_marginTop="@dimen/dp_10"
             android:padding="2dp"/>
-<!--
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleImage"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="@dimen/space5"
-           />-->
-    </LinearLayout>
+           />
 
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingBottom="3dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textStyle="bold"
+               android:textColor="#FFF"
+               android:textAlignment="center"
+               android:gravity="center_horizontal"
+               android:text="FOR ONLINE TRAINING"
+               android:layout_marginTop="15dp"
+               android:textSize="25dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#FFF"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:text="(Limited Time Only)"
+                    android:layout_marginTop="1dp"
+                    android:textSize="15dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:layout_marginTop="@dimen/space5"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="fitXY"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:src="@drawable/sixth"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey_light_secondary" />
+
+        <TextView
+            android:layout_marginTop="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Highlighted Videos"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#221E1E"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/youTubeRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"/>
+
+        <ImageView
+            android:id="@+id/aboutProfile"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/space5"
+            android:layout_marginRight="@dimen/space5"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:src="@mipmap/prooo"
+            android:scaleType="fitXY"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imageRecycler1"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"/>
+
+        <include layout="@layout/fill"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+    </LinearLayout>
 </ScrollView>
