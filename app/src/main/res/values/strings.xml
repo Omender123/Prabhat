@@ -5,4 +5,13 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    // about Details
+    <string name="first"> Prabhat Kumar is a successful Stock Market Analyst and Trainer with more than seven years of experience. He has been a prominent face on Youtube with subscriber base of 52000+. He has just started a new online series ‘Kal ka Bazar’ on his channel named ‘prabhat trading service’. He regularly uploads video of kal ka bazar one day before, so people could use it and make benefit from it. He also uploads educational and analysis videos on his channel for the people.</string>
+    <string name="second">Now he also wants to focus to transform the society of India through his new initiative on Youtube channel. He also try to make understand people through their videos that how share market education can change your life and how people can be self-independent in stock market by the knowledge. He believes that learning is a lifelong process that never ends.</string>
+    <string name="third">Prabhat Kumar is founder of Prabhat Trading Service, and Provides Educational Service.</string>
+    <string name="forth">He make people educated and inspires through their YouTube videos.</string>
+    <string name="fifth">Motivates and Inspires peoples for taking knowledge of stock market.</string>
+    <string name="sixth">He wanted to make everybody self-independent, along with this he is helping people to make profit in stock market.</string>
+    <string name="seven">We are the share market information company which basically provides information for stocks. Our goal is give you a complete education and information about the stock market, we also determine to link India’s 130 crore people to share market, by the knowledge that PTS have. PTS find the hidden potential in you, and make you people independent in stock market, PTS provides the share market knowledge through training and webinars to your doorstep of your city. PTS is the only who provide the actual and one sided analysis of the stock market. We have that knowledge, No one els have.</string>
 </resources>

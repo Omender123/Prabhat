@@ -1,9 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/dp_10"
     tools:context=".MenuActivity.About_us">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginLeft="@dimen/space5"
+        android:layout_marginRight="@dimen/space5"
+        android:layout_marginBottom="@dimen/space5"
+        ><RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#4c4c4c"
+            android:baselineAligned="false">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/dp_10"
+                android:background="#666"
+                android:src="@mipmap/profile" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/space20"
+                android:layout_toStartOf="@+id/image"
+                android:layout_toLeftOf="@+id/image"
+                android:gravity="center_horizontal"
+                android:text="Prabhat Kumar"
+                android:textAlignment="center"
+                android:textColor="#ed7f20"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/founder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:layout_toStartOf="@+id/image"
+                android:layout_toLeftOf="@+id/image"
+                android:gravity="center_horizontal"
+                android:text="Founder"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/founder"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:layout_toStartOf="@+id/image"
+                android:layout_toLeftOf="@+id/image"
+                android:gravity="center_horizontal"
+                android:text="Prabhat Trading Service "
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/grey_light_secondary" />
+
+    <TextView
+    android:id="@+id/firstTxt1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/first"
+    android:textSize="18dp"
+    android:textColor="#000"
+    android:layout_margin="@dimen/space5"/>
+
+    <TextView
+        android:id="@+id/firstTxt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:layout_marginTop="2dp"
+        android:text="@string/second"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/dot"
+        android:text="@string/third"
+        android:textColor="#000"
+        android:textSize="18dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/dot"
+        android:text="@string/forth"
+        android:textColor="#000"
+        android:textSize="18dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/dot"
+        android:text="@string/fifth"
+        android:textColor="#000"
+        android:textSize="18dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/dot"
+        android:text="@string/sixth"
+        android:textColor="#000"
+        android:textSize="18dp" />
+
+   <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+   android:layout_margin="@dimen/space5"
+    android:padding="@dimen/space5"
+    android:text="  Our Mission"
+    android:textColor="#fff"
+    android:textSize="@dimen/space20"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        android:text="@string/seven"
+        android:textColor="#000"
+        android:textSize="18dp"/>
+
+</LinearLayout>
+
+</ScrollView>

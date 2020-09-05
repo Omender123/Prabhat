@@ -7,8 +7,9 @@
         android:id="@+id/youTube"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:background="@drawable/whiteborder"
         android:src="@mipmap/ic_launcher"
         android:scaleType="fitXY"
-        android:layout_margin="@dimen/dp_10"/>
+        />
 
 </LinearLayout>

@@ -13,6 +13,8 @@ public class LocalData {
 
     public static final Integer[] SimpleImages={R.mipmap.india,R.mipmap.youtube,R.mipmap.group};
 
+
+
 }
 
 

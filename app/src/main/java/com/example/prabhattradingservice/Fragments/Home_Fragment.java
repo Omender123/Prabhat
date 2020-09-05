@@ -1,6 +1,7 @@
 package com.example.prabhattradingservice.Fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -13,6 +14,8 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,7 +37,7 @@ import java.util.TimerTask;
 
 public class Home_Fragment extends Fragment {
 
-
+    Animation animation;
     // page Slider
     private static ViewPager mpage;
     CirclePageIndicator indicator;
@@ -57,7 +60,7 @@ public class Home_Fragment extends Fragment {
     ArrayList<YouTubeModel>imageModels;
 
 
-    ImageView imageView;
+    ImageView imageView,facebook,youtube,twitter,telegram;
 
     public Home_Fragment() {
         // Required empty public constructor
@@ -71,6 +74,10 @@ public class Home_Fragment extends Fragment {
       // About page
 
         imageView=view.findViewById(R.id.aboutProfile);
+        facebook=view.findViewById(R.id.facebook);
+        youtube=view.findViewById(R.id.youTube);
+        twitter=view.findViewById(R.id.Twitter);
+        telegram=view.findViewById(R.id.Telegram);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +102,7 @@ public class Home_Fragment extends Fragment {
         getImage();
         youTubeVideo();
         Images();
+        contactWithUs();
 
   return view;  }
 
@@ -192,4 +200,53 @@ private void getImage(){
         imageRecycler.setAdapter(imageAdapter);
     }
 
+    public void contactWithUs(){
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.facebook.com/prabhatttrading/";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                facebook.startAnimation(animation);
+            }
+        });
+
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.youtube.com/channel/UCvoi3COLPi2PB3WvlovGqeQ?view_as=subscriber";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                youtube.startAnimation(animation);
+            }
+        });
+
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://twitter.com/PrabhatService";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                twitter.startAnimation(animation);
+            }
+        });
+
+        telegram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://t.me/PrabhatTradingService";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                twitter.startAnimation(animation);
+            }
+        });
+    }
 }
