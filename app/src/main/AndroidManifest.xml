@@ -9,19 +9,28 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/lodo"
+        android:icon="@mipmap/application_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/lodo"
+        android:roundIcon="@mipmap/application_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".QueryForm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Abouts_Activty.Blogs"></activity>
+        <activity android:name=".Abouts_Activty.Returns" />
+        <activity android:name=".Abouts_Activty.Terms" />
+        <activity android:name=".Abouts_Activty.Privacy_Policy" />
+        <activity android:name=".Abouts_Activty.Disclaimer" />
+        <activity
+            android:name=".QueryForm"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuActivity.About"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity.Training" />
         <activity android:name=".MenuActivity.Video" />
         <activity android:name=".MenuActivity.Gallery" />
         <activity android:name=".MenuActivity.Payment" />
-        <activity android:name=".MenuActivity.About_us" />
+        <activity android:name=".Abouts_Activty.About_us" />
         <activity
             android:name=".MenuActivity.Contact_Us"
             android:theme="@style/AppTheme.NoActionBar" />

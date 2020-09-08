@@ -74,6 +74,7 @@ public class ImageAdapter extends  RecyclerView.Adapter<ImageAdapter.MyHolder> {
             secondTxt=itemView.findViewById(R.id.secondTxt);
             image=itemView.findViewById(R.id.imageLogo);
             cardView=itemView.findViewById(R.id.cardView);
+
         }
     }
 }

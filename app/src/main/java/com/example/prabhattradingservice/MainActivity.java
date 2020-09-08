@@ -21,7 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.prabhattradingservice.MenuActivity.About_us;
+import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.MenuActivity.Contact_Us;
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_close);
 
         mDrawerLayout.addDrawerListener(toggle);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -125,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_about:
-                startActivity(new Intent(MainActivity.this, About_us.class));
-                Toast.makeText(this, "Welcome to About_us", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, About.class));
+                Toast.makeText(this, "Welcome to About_us ", Toast.LENGTH_SHORT).show();
 
                 break;
 

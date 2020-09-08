@@ -120,7 +120,7 @@
                                     android:drawableLeft="@mipmap/ic_call"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:text="+91-7065634746,+91-9667709742"
+                                    android:text="+91-7065634746, +91-9667709742"
                                     android:textSize="16sp" />
                             </LinearLayout>
 
@@ -136,10 +136,10 @@
                                     android:id="@+id/support_email"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:drawableLeft="@mipmap/ic_email"
+                                    android:drawableLeft="@drawable/ic_message"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:text="info@prabhattrading.com \n support@prabhattrading.com"
+                                    android:text="info@prabhattrading.com"
                                     android:textSize="16sp" />
 
                             </LinearLayout>
@@ -172,7 +172,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="VISIT OUR WEBSITE"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#41ad49"
                 android:textSize="16sp" />
 
 

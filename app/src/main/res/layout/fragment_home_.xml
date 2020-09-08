@@ -13,19 +13,14 @@
         android:padding="@dimen/dp_10"
         android:background="@color/white"
         android:orientation="vertical">
-   <ImageView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:src="@drawable/lodo"
-        android:layout_margin="5dp"/>
-    <RelativeLayout
+  <RelativeLayout
         android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_alignParentTop="true"
             />
 
@@ -42,14 +37,23 @@
             app:pageColor="@color/colorPrimaryDark"
             app:snap="false" />
     </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/grey_light_secondary" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@mipmap/scroll_img"/>
+        <!--<androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rec_scroll_stock"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginTop="@dimen/space5"
             />
-
+-->
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -68,7 +72,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleImage"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space5"
            />
 
@@ -84,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_marginTop="@dimen/space5"
                 android:background="@color/colorPrimary">
            <TextView
                android:layout_width="match_parent"
@@ -143,7 +148,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/whiteborder"
             android:layout_height="550dp"
-            android:src="@mipmap/prooo"
+            android:src="@mipmap/proo"
             android:scaleType="fitXY"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -171,12 +176,15 @@
                 android:id="@+id/contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/aclonica"
                 android:text=" Connect with Us"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:background="@color/colorPrimary"
-                android:textSize="30dp"
-                android:padding="@dimen/dp_10"/>
+                android:textSize="15dp"
+                android:padding="5dp"
+                android:gravity="center_horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -188,8 +196,8 @@
 
                 <ImageView
                     android:id="@+id/facebook"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginLeft="@dimen/space10"
                     android:layout_marginRight="@dimen/space5"
@@ -203,8 +211,8 @@
 
                 <ImageView
                     android:id="@+id/youTube"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space5"
                     android:layout_marginLeft="@dimen/space5"
@@ -217,9 +225,9 @@
 
                 <ImageView
                     android:id="@+id/Twitter"
-                    android:layout_width="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="@dimen/space10"
-                    android:layout_height="50dp"
                     android:layout_marginRight="@dimen/space5"
                     android:layout_marginLeft="@dimen/space5"
                     android:src="@drawable/ic_twitter"
@@ -231,8 +239,8 @@
 
                 <ImageView
                     android:id="@+id/Telegram"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space10"
                     android:layout_marginLeft="@dimen/space5"
@@ -265,11 +273,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Payment Powered by"
+                android:fontFamily="@font/aclonica"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:background="@color/colorPrimary"
                 android:textStyle="bold"
-                android:textSize="@dimen/txt30"
-                android:padding="@dimen/dp_10"/>
+                android:textSize="15dp"
+                android:padding="5dp"
+                android:gravity="center_horizontal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -281,8 +292,8 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@mipmap/rupay"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space10"
@@ -295,8 +306,8 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@mipmap/verified"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space5"
@@ -309,8 +320,8 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@mipmap/visa"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space5"
@@ -323,12 +334,12 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="70dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="@dimen/space5"
                     android:layout_marginLeft="@dimen/space5"
                     android:layout_marginBottom="@dimen/space10"
-                    android:layout_height="70dp"
                     android:src="@mipmap/mastercard"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView5"
@@ -337,8 +348,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:src="@mipmap/upi"
                     android:layout_marginTop="@dimen/space10"
                     android:layout_marginRight="70dp"

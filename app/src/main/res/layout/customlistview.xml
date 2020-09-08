@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="180dp"
-        android:layout_height="245dp"
+        android:layout_height="215dp"
         android:layout_marginTop="2dp"
         android:padding="2dp"
         app:cardCornerRadius="5dp">
@@ -54,10 +55,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Hello"
+                android:textSize="15dp"
+                android:maxLines="2"
+                android:textDirection="firstStrong"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
                 android:textColor="#FFF"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:minHeight="50px"/>
 
             <TextView
                 android:id="@+id/secondTxt"
@@ -66,9 +71,10 @@
                 android:layout_margin="5dp"
                 android:text="Hello"
                 android:textAlignment="center"
-                android:gravity="center_horizontal"
                 android:textColor="#fff"
-                android:textStyle="bold"/>
+                android:maxLines="2"
+                android:minHeight="50px"
+                />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
