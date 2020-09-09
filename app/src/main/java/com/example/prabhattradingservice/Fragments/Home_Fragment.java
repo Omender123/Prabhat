@@ -3,6 +3,8 @@ package com.example.prabhattradingservice.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -24,6 +27,9 @@ import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
 import com.example.prabhattradingservice.Adapter.VideoAdapter;
 import com.example.prabhattradingservice.LocalData;
 import com.example.prabhattradingservice.Abouts_Activty.About_us;
+import com.example.prabhattradingservice.MenuActivity.Gallery;
+import com.example.prabhattradingservice.MenuActivity.Payment;
+import com.example.prabhattradingservice.MenuActivity.Video;
 import com.example.prabhattradingservice.Model.ModelData;
 import com.example.prabhattradingservice.Model.YouTubeModel;
 import com.example.prabhattradingservice.R;
@@ -36,6 +42,8 @@ import java.util.TimerTask;
 public class Home_Fragment extends Fragment {
 
     Animation animation;
+    WebView webView;
+    CardView onlineTraining,offlineTraining,video, gallery,payment;
     // page Slider
     private static ViewPager mpage;
     CirclePageIndicator indicator;
@@ -71,11 +79,68 @@ public class Home_Fragment extends Fragment {
       View view= inflater.inflate(R.layout.fragment_home_, container, false);
       // About page
 
-        imageView=view.findViewById(R.id.aboutProfile);
+        //imageView=view.findViewById(R.id.aboutProfile);
         facebook=view.findViewById(R.id.facebook);
         youtube=view.findViewById(R.id.youTube);
         twitter=view.findViewById(R.id.Twitter);
         telegram=view.findViewById(R.id.Telegram);
+
+        webView=view.findViewById(R.id.marqueeWebView);
+        String url="file:///android_asset/marquee.html";
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(url);
+
+
+        offlineTraining=view.findViewById(R.id.OfflineCardView);
+        onlineTraining=view.findViewById(R.id.OnlineCardView);
+       video=view.findViewById(R.id.VideoCardView);
+        gallery=view.findViewById(R.id.galleryCardView);
+        payment=view.findViewById(R.id.paymentCardView);
+
+        offlineTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        onlineTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             Intent intent=new Intent(getContext(), Video.class);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                video.startAnimation(animation);
+             startActivity(intent);
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), Gallery.class);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                gallery.startAnimation(animation);
+                startActivity(intent);
+
+            }
+        });
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(), Payment.class);
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                payment.startAnimation(animation);
+                startActivity(intent);
+
+            }
+        });
+
+/*
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,10 +148,11 @@ public class Home_Fragment extends Fragment {
                 Toast.makeText(getContext(), "Welcome to about_us", Toast.LENGTH_SHORT).show();
             }
         });
+*/
       // image slider
         mpage=view.findViewById(R.id.pager);
         indicator = (CirclePageIndicator)view.findViewById(R.id.indicator);
-        // images
+    /*    // images
         recyclerView=view.findViewById(R.id.recycleImage);
         recyclerView.setHasFixedSize(true);
        //You tube Video
@@ -95,12 +161,12 @@ public class Home_Fragment extends Fragment {
        //india,group
         imageRecycler=(RecyclerView) view.findViewById(R.id.imageRecycler1);
         imageRecycler.setHasFixedSize(true);
-
+*/
         init();
-        getImage();
-        youTubeVideo();
-        Images();
-        contactWithUs();
+        //getImage();
+        //youTubeVideo();
+        //Images();
+        //contactWithUs();
 
   return view;  }
 

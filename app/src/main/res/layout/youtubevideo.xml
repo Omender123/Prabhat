@@ -9,6 +9,7 @@
         android:layout_height="250dp"
         android:background="@drawable/whiteborder"
         android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="@dimen/space5"
         android:scaleType="fitXY"
         />
 

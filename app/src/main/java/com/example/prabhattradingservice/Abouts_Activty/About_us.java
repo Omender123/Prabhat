@@ -19,6 +19,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.example.prabhattradingservice.MainActivity;
@@ -27,7 +28,8 @@ import com.example.prabhattradingservice.R;
 
 public class About_us extends AppCompatActivity {
     ActionBar actionBar;
-    TextView firstTxt;
+
+    WebView webView;
 
     @SuppressLint("WrongConstant")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -36,8 +38,14 @@ public class About_us extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         actionBarSetup();
+        webView= findViewById(R.id.AboutWebView);
+        String url="file:///android_asset/About_Us.html";
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(url);
 
-        firstTxt = findViewById(R.id.firstTxt1);
+
+
+       /* firstTxt = findViewById(R.id.firstTxt1);
         String text = getResources().getString(R.string.first);
         SpannableString ss = new SpannableString(text);
         StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);
@@ -55,7 +63,7 @@ public class About_us extends AppCompatActivity {
         ss.setSpan(styleSpan, 0, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(styleSpan1, 137, 144, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(styleSpan2, 254, 277, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
+*/
     }
 
     @Override
