@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Abouts_Activty.Blogs"></activity>
+        <activity android:name=".ForgetPassword_actiicty"></activity>
+        <activity android:name=".Verification_activity" />
+        <activity android:name=".Registration_Activity" />
+        <activity android:name=".Login_Activity" />
+        <activity android:name=".Abouts_Activty.Blogs" />
         <activity android:name=".Abouts_Activty.Returns" />
         <activity android:name=".Abouts_Activty.Terms" />
         <activity android:name=".Abouts_Activty.Privacy_Policy" />
