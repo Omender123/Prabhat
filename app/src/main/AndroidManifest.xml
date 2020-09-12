@@ -16,9 +16,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ForgetPassword_actiicty"></activity>
-        <activity android:name=".Verification_activity" />
-        <activity android:name=".Registration_Activity" />
-        <activity android:name=".Login_Activity" />
+        <activity android:name=".Verification_activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Registration_Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Login_Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Abouts_Activty.Blogs" />
         <activity android:name=".Abouts_Activty.Returns" />
         <activity android:name=".Abouts_Activty.Terms" />

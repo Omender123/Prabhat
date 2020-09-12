@@ -3,8 +3,6 @@ package com.example.prabhattradingservice.MenuActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.TargetApi;
@@ -13,51 +11,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.prabhattradingservice.Adapter.ImageAdapter;
-import com.example.prabhattradingservice.Adapter.VideoAdapter;
-import com.example.prabhattradingservice.Adapter.YouTubeVideoAdapter;
-import com.example.prabhattradingservice.LocalData;
 import com.example.prabhattradingservice.MainActivity;
-import com.example.prabhattradingservice.Model.ModelData;
-import com.example.prabhattradingservice.Model.YouTubeModel;
-import com.example.prabhattradingservice.Model.YouTubeVideoModelData;
 import com.example.prabhattradingservice.R;
-
-import java.util.ArrayList;
 
 public class Video extends AppCompatActivity {
 ActionBar actionBar;
-
-    RecyclerView recyclerView;
-    YouTubeVideoAdapter youTubeVideoAdapter;
-    ArrayList<YouTubeVideoModelData> ModelData;
-    RecyclerView.LayoutManager layoutManager;
-    @Override
+RecyclerView recyclerView;
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         actionBarSetup();
-
-        recyclerView=findViewById(R.id.VideoRecycleView);
-        recyclerView.setHasFixedSize(true);
-        youTubeVideo();
-
-
     }
 
-    private void youTubeVideo(){
-
-        layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        ModelData=new ArrayList<YouTubeVideoModelData>();
-        for (int i = 0; i< LocalData.youtubeImages.length; i++){
-            ModelData.add(new YouTubeVideoModelData(LocalData.youtubeImages[i]));
-        }
-        youTubeVideoAdapter=new YouTubeVideoAdapter(ModelData,getApplicationContext());
-        recyclerView.setAdapter(youTubeVideoAdapter);
-    }
-    // Action bar change tittle
+   // Action bar change tittle
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void actionBarSetup() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

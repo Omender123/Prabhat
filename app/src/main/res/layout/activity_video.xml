@@ -6,9 +6,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MenuActivity.Video">
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/VideoRecycleView"
-    android:background="#FFF1F1"/>
 </LinearLayout>
