@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.R;
 
-public class Payment extends AppCompatActivity {
+public class Trading_Calls extends AppCompatActivity {
 ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ ActionBar actionBar;
             case android.R.id.home:
                 // todo: goto back activity from here
 
-                Intent intent = new Intent(Payment.this, MainActivity.class);
+                Intent intent = new Intent(Trading_Calls.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -57,7 +57,7 @@ ActionBar actionBar;
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Payment.this, MainActivity.class);
+        Intent intent = new Intent(Trading_Calls.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

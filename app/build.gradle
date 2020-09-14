@@ -41,7 +41,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
-
+    // Image loading lib
+    implementation('com.github.bumptech.glide:glide:4.7.1@aar') {
+        transitive = true
+    }
+    // Youtube lib
+    implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.1'
+    // code generator for view
+    implementation 'com.jakewharton:butterknife:8.8.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

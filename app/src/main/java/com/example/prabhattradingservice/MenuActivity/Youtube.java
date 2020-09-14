@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.R;
 
-public class Video extends AppCompatActivity {
+public class Youtube extends AppCompatActivity {
 ActionBar actionBar;
 RecyclerView recyclerView;
      @Override
@@ -44,7 +44,7 @@ RecyclerView recyclerView;
             case android.R.id.home:
                 // todo: goto back activity from here
 
-                Intent intent = new Intent(Video.this, MainActivity.class);
+                Intent intent = new Intent(Youtube.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -58,7 +58,7 @@ RecyclerView recyclerView;
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(Video.this, MainActivity.class);
+        Intent intent = new Intent(Youtube.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

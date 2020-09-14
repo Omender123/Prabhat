@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -25,23 +26,25 @@ import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.MenuActivity.Contact_Us;
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
-import com.example.prabhattradingservice.MenuActivity.Payment;
-import com.example.prabhattradingservice.MenuActivity.Training;
-import com.example.prabhattradingservice.MenuActivity.Video;
+import com.example.prabhattradingservice.MenuActivity.Trading_Calls;
+import com.example.prabhattradingservice.MenuActivity.Course;
+import com.example.prabhattradingservice.MenuActivity.Youtube;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     FloatingActionButton message,phone;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_drawer_layout);
 
-        Toolbar toolbar=findViewById(R.id.toolbar);
+        toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+       /* toolbar.setTitle("Prabhat Trading Service");
+*/
         message=findViewById(R.id.message);
         phone=findViewById(R.id.phone);
         message.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_close);
 
         mDrawerLayout.addDrawerListener(toggle);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+       // toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -91,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             super.onBackPressed();
         }
-
     }
 
     @Override
@@ -104,21 +106,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Welcome to home fragment", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.nav_training:
-                startActivity(new Intent(MainActivity.this, Training.class));
-                Toast.makeText(this, "Welcome to Training", Toast.LENGTH_SHORT).show();
+            case R.id.nav_Course:
+                startActivity(new Intent(MainActivity.this, Course.class));
+                Toast.makeText(this, "Welcome to Course", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_video:
-                startActivity(new Intent(MainActivity.this, Video.class));
-                Toast.makeText(this, "Welcome to Video", Toast.LENGTH_SHORT).show();
+            case R.id.nav_Calculator:
+                Toast.makeText(this, "Welcome to Calculator", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_Youtube:
+                startActivity(new Intent(MainActivity.this, Youtube.class));
+                Toast.makeText(this, "Welcome to YouTube", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_Gallery:
                 startActivity(new Intent(MainActivity.this, Gallery.class));
                 Toast.makeText(this, "Welcome to Gallery", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_payment:
-                startActivity(new Intent(MainActivity.this, Payment.class));
-                Toast.makeText(this, "Welcome to Payment Details", Toast.LENGTH_SHORT).show();
+            case R.id.nav_Trading_Calls:
+                startActivity(new Intent(MainActivity.this, Trading_Calls.class));
+                Toast.makeText(this, "Welcome to Trading Calls", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_contact:
                startActivity(new Intent(MainActivity.this, Contact_Us.class));
@@ -131,6 +137,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 break;
 
+            case R.id.nav_Share_us:
+
+              share();
+                break;
+            case R.id.nav_Feedback:
+                Toast.makeText(this, "Welcome to Feedback ", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.nav_Logout:
+                Toast.makeText(this, "Welcome to Logout ", Toast.LENGTH_SHORT).show();
+                break;
 
 
         }
@@ -160,5 +177,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
+public void share(){
+    ApplicationInfo app = getApplicationContext().getApplicationInfo();
+    String filePath = app.publicSourceDir;
+    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+    Uri uri = Uri.parse(filePath);
+    sharingIntent.setType("*/*");
+    sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+    sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://drive.google.com/open?id=10Nc5BoYn4NZ_O8ae32UVQwyzdCzFxNy");
+    startActivity(Intent.createChooser(sharingIntent, "Share "));
+    Toast.makeText(this, "Welcome to Share Us ", Toast.LENGTH_SHORT).show();
+
+}
+
+    // set home check
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+      /*  if (item.getItemId()==android.R.id.home){
+            finish();
+
+        }*/
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // todo: goto back activity from here
+
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

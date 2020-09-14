@@ -6,21 +6,25 @@
         android:icon="@drawable/ic_home"
         android:title="Home"/>
     <item
-        android:id="@+id/nav_training"
+        android:id="@+id/nav_Course"
         android:icon="@drawable/ic_traning"
-        android:title="Training"/>
+        android:title="Course"/>
     <item
-        android:id="@+id/nav_video"
-        android:icon="@drawable/ic_video"
-        android:title="Video"/>
+        android:id="@+id/nav_Calculator"
+        android:icon="@drawable/ic_calculator"
+        android:title="Calculator"/>
+    <item
+        android:id="@+id/nav_Youtube"
+        android:icon="@drawable/ic_youtube"
+        android:title="YouTube"/>
+    <item
+        android:id="@+id/nav_Trading_Calls"
+        android:icon="@drawable/ic_baseline_phone_in_talk_24"
+        android:title="Trading Calls"/>
     <item
         android:id="@+id/nav_Gallery"
         android:icon="@drawable/ic_gallery"
         android:title="Gallery"/>
-    <item
-        android:id="@+id/nav_payment"
-        android:icon="@drawable/ic_payment"
-        android:title="Payment"/>
 
 </group>
 
@@ -36,6 +40,20 @@
                   android:id="@+id/nav_about"
                   android:icon="@drawable/ic_information"
                   android:title="About Us"/>
+
+              <item
+                  android:id="@+id/nav_Share_us"
+                  android:icon="@drawable/ic_baseline_share_24"
+                  android:title="Share Us"/>
+              <item
+                  android:id="@+id/nav_Feedback"
+                  android:icon="@drawable/ic_baseline_feedback_24"
+                  android:title="Feedback"/>
+              <item
+                  android:id="@+id/nav_Logout"
+                  android:icon="@drawable/ic_power_button"
+                  android:title="About Us"/>
+
 
           </group>
       </menu>

@@ -33,10 +33,10 @@
         <activity
             android:name=".MenuActivity.About"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuActivity.Training" />
-        <activity android:name=".MenuActivity.Video" />
+        <activity android:name=".MenuActivity.Course" />
+        <activity android:name=".MenuActivity.Youtube" />
         <activity android:name=".MenuActivity.Gallery" />
-        <activity android:name=".MenuActivity.Payment" />
+        <activity android:name=".MenuActivity.Trading_Calls" />
         <activity android:name=".Abouts_Activty.About_us" />
         <activity
             android:name=".MenuActivity.Contact_Us"

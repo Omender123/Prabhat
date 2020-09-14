@@ -22,7 +22,7 @@ private static  int SPLASH_SCREEN=2000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(Splash_Screen.this,Login_Activity.class));
+                startActivity(new Intent(Splash_Screen.this,MainActivity.class));
                 finish();
             }
         },SPLASH_SCREEN);
