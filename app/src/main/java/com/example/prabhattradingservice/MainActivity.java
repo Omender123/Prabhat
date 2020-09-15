@@ -2,12 +2,14 @@ package com.example.prabhattradingservice;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
@@ -23,12 +25,13 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.prabhattradingservice.MenuActivity.About;
+import com.example.prabhattradingservice.MenuActivity.Calculator;
 import com.example.prabhattradingservice.MenuActivity.Contact_Us;
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
+import com.example.prabhattradingservice.MenuActivity.FeedBack_Activity;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
 import com.example.prabhattradingservice.MenuActivity.Trading_Calls;
 import com.example.prabhattradingservice.MenuActivity.Course;
-import com.example.prabhattradingservice.MenuActivity.Youtube;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         checkConnection();
         changeStatusBarColor();
+
     }
 
 
@@ -111,12 +115,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Welcome to Course", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_Calculator:
+                startActivity(new Intent(MainActivity.this, Calculator.class));
                 Toast.makeText(this, "Welcome to Calculator", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_Youtube:
-                startActivity(new Intent(MainActivity.this, Youtube.class));
-                Toast.makeText(this, "Welcome to YouTube", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.youtube.com/channel/UCvoi3COLPi2PB3WvlovGqeQ"));
+                intent.setPackage("com.google.android.youtube");
+                startActivity(intent);
+                 Toast.makeText(this, "Welcome to YouTube", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_Gallery:
                 startActivity(new Intent(MainActivity.this, Gallery.class));
@@ -138,14 +146,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_Share_us:
+                  share();
+                Toast.makeText(this, "Welcome to Share", Toast.LENGTH_SHORT).show();
 
-              share();
                 break;
             case R.id.nav_Feedback:
+                startActivity(new Intent(MainActivity.this, FeedBack_Activity.class));
                 Toast.makeText(this, "Welcome to Feedback ", Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.nav_Logout:
+                AlertDialogBox();
                 Toast.makeText(this, "Welcome to Logout ", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -210,6 +221,39 @@ public void share(){
         return super.onOptionsItemSelected(item);
     }
 
+   public void AlertDialogBox(){
 
+
+       AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+       // set title
+       alertDialogBuilder.setTitle("Prabhat Trading Service");
+
+       // set dialog message
+       alertDialogBuilder.setIcon(R.mipmap.application_icon);
+       alertDialogBuilder
+               .setMessage("Are you sure to Logout !!!!!")
+               .setCancelable(false)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+
+                       Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+
+                   }
+               })
+               .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       Toast.makeText(MainActivity.this, "Logout Failed", Toast.LENGTH_SHORT).show();
+
+                       dialog.cancel();
+                   }
+               });
+
+       // create alert dialog
+       AlertDialog alertDialog = alertDialogBuilder.create();
+
+       // show it
+       alertDialog.show();
+    }
 
 }

@@ -5,5 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MenuActivity.Calculator">
+    tools:context=".CourseScreen.OfflineCourse">
+
+    <WebView
+        android:id="@+id/offlineWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>

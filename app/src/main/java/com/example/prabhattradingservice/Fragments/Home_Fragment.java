@@ -1,6 +1,7 @@
 package com.example.prabhattradingservice.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -15,10 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
 import com.example.prabhattradingservice.Adapter.YoutubeRecyclerAdapter;
+import com.example.prabhattradingservice.CourseScreen.OfflineCourse;
+import com.example.prabhattradingservice.CourseScreen.OnlineCourse;
 import com.example.prabhattradingservice.Model.YoutubeVideo;
 import com.example.prabhattradingservice.R;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -35,7 +41,6 @@ public class Home_Fragment extends Fragment {
 
     Animation animation;
     WebView webView;
-    CardView onlineTraining,offlineTraining,video, gallery,payment;
     // page Slider
     private static ViewPager mpage;
     CirclePageIndicator indicator;
@@ -47,6 +52,7 @@ public class Home_Fragment extends Fragment {
     RecyclerView recyclerViewPrice,recyclerViewIndicator,recyclerViewPositional;
 
     YoutubeRecyclerAdapter mRecyclerAdapter;
+    Button online,offline;
 
 
     public Home_Fragment() {
@@ -58,7 +64,9 @@ public class Home_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
       View view= inflater.inflate(R.layout.fragment_home_, container, false);
-      webView=view.findViewById(R.id.marqueeWebView);
+       online=view.findViewById(R.id.online);
+        offline=view.findViewById(R.id.offline);
+        webView=view.findViewById(R.id.marqueeWebView);
         String url="file:///android_asset/marquee.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
@@ -70,6 +78,7 @@ public class Home_Fragment extends Fragment {
         PriceActionStrategy();
         IndicatorBasedStrategy();
         PositionalStocks();
+        Course();
 
 
         // image slider
@@ -179,33 +188,33 @@ public class Home_Fragment extends Fragment {
         // add first item
         YoutubeVideo video1 = new YoutubeVideo();
         video1.setId(1l);
-        video1.setImageUrl("https://i.ytimg.com/vi/zI-Pux4uaqM/maxresdefault.jpg");
+        video1.setImageUrl("https://i.ytimg.com/vi/rfbw6BymkxA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAu0AVNi9tgj0roTOkddpJ34OSZ4w");
        // video1.setTitle("Thugs Of Hindostan - Official Trailer | Amitabh Bachchan | Aamir Khan | Katrina Kaif | Fatima");
-        video1.setVideoId("zI-Pux4uaqM");
+        video1.setVideoId("rfbw6BymkxA");
         mYoutubeVideo.add(video1);
 
         // add second item
         YoutubeVideo video2 = new YoutubeVideo();
         video2.setId(2l);
-        video2.setImageUrl("https://i.ytimg.com/vi/8ZK_S-46KwE/maxresdefault.jpg");
+        video2.setImageUrl("https://i.ytimg.com/vi/y8bELQD3zy0/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDQ8uZDoOsHkIoQg3WI89yYkVCH-g");
        // video2.setTitle("Colors for Children to Learning with Baby Fun Play with Color Balls Dolphin Slider Toy Set Kids Edu");
-        video2.setVideoId("8ZK_S-46KwE");
+        video2.setVideoId("y8bELQD3zy0");
         mYoutubeVideo.add(video2);
 
         // add third item
         YoutubeVideo video3 = new YoutubeVideo();
         video3.setId(3l);
-        video3.setImageUrl("https://i.ytimg.com/vi/8czMWUH7vW4/hqdefault.jpg");
+        video3.setImageUrl("https://i.ytimg.com/vi/zLw58dVq5VI/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAILJhFbYqGoqXWsP41lun99Z9HpA");
        // video3.setTitle("Air Hostess Accepts Marriage Proposal Mid-Air, Airline Fires her.");
-        video3.setVideoId("8czMWUH7vW4");
+        video3.setVideoId("zLw58dVq5VI");
         mYoutubeVideo.add(video3);
 
         // add four item
         YoutubeVideo video4 = new YoutubeVideo();
         video4.setId(4l);
-        video4.setImageUrl("https://i.ytimg.com/vi/YrQVYEb6hcc/maxresdefault.jpg");
+        video4.setImageUrl("https://i.ytimg.com/vi/07CKQzaI3F8/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCBnMtEEcuk8Ada3rh0VyKEfYYs4g");
       //  video4.setTitle("EXPERIMENT Glowing 1000 degree METAL BALL vs Gunpowder (100 grams)");
-        video4.setVideoId("YrQVYEb6hcc");
+        video4.setVideoId("07CKQzaI3F8");
         mYoutubeVideo.add(video4);
 
 
@@ -214,6 +223,29 @@ public class Home_Fragment extends Fragment {
         mYoutubeVideo.add(video3);
         mYoutubeVideo.add(video4);
        */ return mYoutubeVideo;
+    }
+
+    public void Course(){
+
+        online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(getContext(), OnlineCourse.class));
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                online.startAnimation(animation);
+
+            }
+        });
+
+        offline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), OfflineCourse.class));
+                animation= AnimationUtils.loadAnimation(getContext(),R.anim.animation);
+                offline.startAnimation(animation);
+
+            }
+        });
     }
 
 }

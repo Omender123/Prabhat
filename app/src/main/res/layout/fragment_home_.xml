@@ -53,52 +53,40 @@
             android:layout_marginTop="10dp"
             android:background="@color/grey_light_secondary" />
 
-        <RelativeLayout
-            android:id="@+id/layout1"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="3dp"
+               android:layout_margin="5dp"
+                android:padding="@dimen/space5"
+                android:textAlignment="center"
                 android:text="Price Action Strategy "
-                android:textColor="#333"
-                android:textStyle="normal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="See all"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:textColor="#F89E1A"
+                android:textColor="#000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
-
-        </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="220dp"
-    android:id="@+id/recyclerViewPrice"/>
-        <View android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_light_secondary" />
-
+        <androidx.recyclerview.widget.RecyclerView
+         android:layout_width="match_parent"
+         android:layout_height="220dp"
+         android:id="@+id/recyclerViewPrice"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See all"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:textColor="#F89E1A"
+            android:textStyle="bold"
+            android:layout_gravity="right"/>
 
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_margin="@dimen/space5"
+          android:padding="@dimen/space5"
+          android:textAlignment="center"
+          style="@style/TextAppearance.AppCompat.Body1"
           android:text="Courses"
+          android:textSize="20sp"
+          android:textStyle="bold"
           android:textColor="#000"/>
-
-
         <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -108,145 +96,86 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
+        android:gravity="center"
+        android:background="@drawable/border"
         android:orientation="horizontal">
-       <LinearLayout
-           android:id="@+id/onlineCourse"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
-           <com.alexzh.circleimageview.CircleImageView
-               android:layout_width="80dp"
-               android:layout_height="80dp"
-               android:src="@drawable/ic_teacher"
-                />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center"
-
-               android:layout_marginLeft="@dimen/space10"
-               android:text=" Online \n Course"
-               android:textColor="#B52525"
-               android:textSize="18dp" />
-
-       </LinearLayout>
-            <View
-                android:layout_width="2dp"
-                android:layout_marginLeft="@dimen/space20"
-                android:layout_height="match_parent"
-                android:background="@color/grey_light_secondary" />
-
-    <LinearLayout
-        android:id="@+id/offlineCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <com.alexzh.circleimageview.CircleImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="@dimen/space20"
-            android:src="@drawable/ic_offline" />
-
-        <TextView
+        <Button
+            android:id="@+id/online"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:layout_marginBottom="@dimen/space5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:textSize="12dp"
+            android:padding="15dp"
+            android:text="( Online Course )"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/space10"
-            android:text=" Offline \n Course"
-            android:textColor="#FA2A71"
-            android:textSize="18dp" />
-
+            android:drawableLeft="@drawable/ic_teacher"/>
+          <Button
+            android:id="@+id/offline"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="@dimen/space5"
+            android:background="@drawable/border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginLeft="5dp"
+            android:drawablePadding="5dp"
+            android:padding="15dp"
+            android:text="( Online Course )"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/ic_offline"/>
     </LinearLayout>
 
-            </LinearLayout>
-
-
-
-</androidx.cardview.widget.CardView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/grey_light_secondary" />
-        <RelativeLayout
-            android:id="@+id/layout2"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
+        </androidx.cardview.widget.CardView>
+             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                 android:padding="@dimen/space5"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="3dp"
+                android:layout_margin="5dp"
                 android:text="Indicator based Strategy "
-                android:textColor="#333"
-                android:textStyle="normal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="See all"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:textColor="#F89E1A"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-
+                android:textColor="#000"
+                android:textStyle="bold"
+                 android:textSize="20sp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:id="@+id/recyclerViewIndicator"/>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_light_secondary" />
-        <RelativeLayout
-            android:id="@+id/layout3"
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="See all"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:textColor="#F89E1A"
+            android:textStyle="bold" />
+        <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="3dp"
+                android:textAlignment="center"
+                android:padding="@dimen/space5"
+                android:layout_margin="5dp"
                 android:text="Positional Stocks "
-                android:textColor="#333"
-                android:textStyle="normal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:text="See all"
-                android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-                android:textColor="#F89E1A"
+                android:textColor="#000"
+                android:textSize="20sp"
                 android:textStyle="bold" />
-
-        </RelativeLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:id="@+id/recyclerViewPositional"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/grey_light_secondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_gravity="right"
+            android:text="See all"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+            android:textColor="#F89E1A"
+            android:textStyle="bold"/>
 
         <ImageView
                  android:layout_width="match_parent"

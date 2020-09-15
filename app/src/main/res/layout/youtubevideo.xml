@@ -39,11 +39,12 @@
         <ImageView
             android:id="@+id/imageViewItem"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="TODO" />
 
         <com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
             android:id="@+id/youtube_view"

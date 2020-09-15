@@ -9,16 +9,31 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:background="@mipmap/bg">
 
-    <com.alexzh.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
+    <RelativeLayout
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_marginTop="30dp"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:src="@drawable/ic_name"
-        android:scaleType="fitXY"
-        app:view_borderColor="#fff"
-        app:view_borderWidth="2dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp">
+        <com.alexzh.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_name"
+            android:scaleType="fitXY"
+            app:view_borderColor="#fff"
+            app:view_borderWidth="2dp"
+            />
+        <com.alexzh.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="@dimen/space10"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"/>
+    </RelativeLayout>
+
+
 <TextView
     android:id="@+id/ProfileName"
     android:layout_width="wrap_content"

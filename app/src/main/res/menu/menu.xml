@@ -52,7 +52,7 @@
               <item
                   android:id="@+id/nav_Logout"
                   android:icon="@drawable/ic_power_button"
-                  android:title="About Us"/>
+                  android:title="Logout"/>
 
 
           </group>

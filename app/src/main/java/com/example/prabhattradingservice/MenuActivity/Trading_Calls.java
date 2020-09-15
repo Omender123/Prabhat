@@ -30,7 +30,7 @@ ActionBar actionBar;
             actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            actionBar.setTitle("Payment");
+            actionBar.setTitle("Trading Calls");
         }
     }
     // set home check

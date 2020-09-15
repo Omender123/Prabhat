@@ -15,13 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ForgetPassword_actiicty"></activity>
-        <activity android:name=".Verification_activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Registration_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Login_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".CourseScreen.OfflineCourse"></activity>
+        <activity android:name=".CourseScreen.OnlineCourse" />
+        <activity
+            android:name=".MenuActivity.FeedBack_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForgetPassword_actiicty" />
+        <activity
+            android:name=".Verification_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Registration_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Login_Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Abouts_Activty.Blogs" />
         <activity android:name=".Abouts_Activty.Returns" />
         <activity android:name=".Abouts_Activty.Terms" />
@@ -34,7 +42,7 @@
             android:name=".MenuActivity.About"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity.Course" />
-        <activity android:name=".MenuActivity.Youtube" />
+        <activity android:name=".MenuActivity.Calculator" />
         <activity android:name=".MenuActivity.Gallery" />
         <activity android:name=".MenuActivity.Trading_Calls" />
         <activity android:name=".Abouts_Activty.About_us" />

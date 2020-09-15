@@ -147,10 +147,12 @@
                         android:layout_marginRight="5dp"
                         android:scrollbars="vertical"
                         android:textDirection="firstStrong"
-
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:lines="5"
                         android:textSize="@dimen/txt16"
                         android:textColor="@android:color/white"
-                        android:inputType="text"
                         android:background="@android:color/transparent"/>
                 </LinearLayout>
 
