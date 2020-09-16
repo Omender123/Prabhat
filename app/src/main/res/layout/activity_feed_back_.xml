@@ -47,7 +47,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/iv_back"
                 android:layout_toRightOf="@+id/iv_back"
-                android:fontFamily="@font/autour_one"
+                android:fontFamily="@font/aclonica"
                 android:gravity="center_horizontal"
                 android:text="Feedback"
                 android:textColor="#FFFFFF"
@@ -55,14 +55,28 @@
                 android:textSize="35sp" />
         </RelativeLayout>
 
-        <com.alexzh.circleimageview.CircleImageView
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            android:background="@drawable/dot">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/lodo"/>
+
+        </LinearLayout>
+    <!--    <com.alexzh.circleimageview.CircleImageView
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:id="@+id/imageView"
-            android:scaleType="fitEnd"
+            android:scaleType="fitXY"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@mipmap/profile" />
+            android:src="@drawable/lodo" />-->
 
         <TextView
             android:id="@+id/tvFeedback"

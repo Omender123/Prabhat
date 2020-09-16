@@ -32,11 +32,11 @@ ActionBar actionBar;
         setContentView(R.layout.activity_offline_course);
 
         actionBarSetup();
-       /* webView= findViewById(R.id.offlineWebView);
-        String url="file:///android_asset/About_Us.html";
+       webView= findViewById(R.id.offlineWebView);
+        String url="file:///android_asset/OfflineCourse.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
-*/
+
     }
 
 

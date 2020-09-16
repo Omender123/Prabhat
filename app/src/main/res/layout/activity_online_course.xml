@@ -6,6 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CourseScreen.OnlineCourse">
+ <androidx.cardview.widget.CardView
+     android:layout_width="match_parent"
+     android:layout_height="200dp"
+     android:layout_margin="2dp">
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <ImageView
+             android:id="@+id/image"
+             android:layout_width="match_parent"
+             android:layout_height="200dp"
+             android:src="@mipmap/onlinecourse"
+             android:scaleType="fitXY"/>
+
+         <Button
+             android:id="@+id/onlineBuy"
+             android:layout_width="100dp"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_alignParentBottom="true"
+             android:layout_marginBottom="20dp"
+             android:text="Buy Now"
+             android:layout_marginRight="18dp"
+             android:background="#333"
+             android:textColor="#fff"/>
+     </RelativeLayout>
+ </androidx.cardview.widget.CardView>
     <WebView
         android:id="@+id/onlineWebView"
         android:layout_width="match_parent"

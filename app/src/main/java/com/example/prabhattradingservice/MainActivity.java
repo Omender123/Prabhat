@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
             Toast.makeText(this, "Please check Internet Connection", Toast.LENGTH_SHORT).show();
         }
+
     }
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

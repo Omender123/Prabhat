@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/space20"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Home_Fragment">
     <LinearLayout
@@ -19,7 +18,7 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="135dp"
             android:layout_alignParentTop="true"
             />
 
@@ -56,7 +55,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               android:layout_margin="5dp"
+               android:layout_margin="8dp"
                 android:padding="@dimen/space5"
                 android:textAlignment="center"
                 android:text="Price Action Strategy "
@@ -79,7 +78,7 @@
       <TextView
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_margin="@dimen/space5"
+          android:layout_margin="8dp"
           android:padding="@dimen/space5"
           android:textAlignment="center"
           style="@style/TextAppearance.AppCompat.Body1"
@@ -95,40 +94,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="1dp"
         android:gravity="center"
-        android:background="@drawable/border"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/online"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:layout_marginBottom="@dimen/space5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
-            android:textSize="12dp"
-            android:padding="15dp"
-            android:text="( Online Course )"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/ic_teacher"/>
+      <androidx.cardview.widget.CardView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="@dimen/space10"
+          android:layout_margin="1dp"
+          >
           <Button
-            android:id="@+id/offline"
-            android:layout_margin="5dp"
-            android:layout_marginBottom="@dimen/space5"
-            android:background="@drawable/border"
+              android:id="@+id/online"
+              android:background="#fff"
+              android:layout_margin="5dp"
+              android:layout_marginBottom="@dimen/space5"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:drawablePadding="10dp"
+              android:textSize="15dp"
+              android:padding="15dp"
+              android:text="( Online Course )"
+              android:layout_gravity="center"
+              android:drawableTop="@drawable/ic_teacher"/>
+
+      </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:layout_marginLeft="5dp"
-            android:drawablePadding="5dp"
-            android:padding="15dp"
-            android:text="( Online Course )"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/ic_offline"/>
-    </LinearLayout>
+            android:layout_marginRight="@dimen/space10"
+            android:layout_margin="1dp">
+            <Button
+                android:id="@+id/offline"
+                android:layout_margin="5dp"
+                android:background="#fff"
+                android:layout_marginBottom="@dimen/space5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:layout_marginLeft="5dp"
+                android:drawablePadding="10dp"
+                android:padding="15dp"
+                android:text="( Offline Course )"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/ic_offline"/>
 
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
         </androidx.cardview.widget.CardView>
              <TextView
                 android:layout_width="match_parent"
@@ -136,7 +147,7 @@
                 android:textAlignment="center"
                  android:padding="@dimen/space5"
                 android:layout_alignParentLeft="true"
-                android:layout_margin="5dp"
+
                 android:text="Indicator based Strategy "
                 android:textColor="#000"
                 android:textStyle="bold"
@@ -157,7 +168,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:padding="@dimen/space5"
+                android:padding="8dp"
                 android:layout_margin="5dp"
                 android:text="Positional Stocks "
                 android:textColor="#000"

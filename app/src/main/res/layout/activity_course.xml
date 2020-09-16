@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg1"
-    tools:context=".MenuActivity.Gallery">
+    tools:context=".MenuActivity.Course">
 
     <ImageView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:layout_height="0dp">
 
             <ImageView
-                android:id="@+id/iv_back4"
+                android:id="@+id/iv_back3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -46,12 +46,12 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="120dp"
+                android:layout_marginRight="76dp"
                 android:layout_toEndOf="@+id/iv_back"
                 android:layout_toRightOf="@+id/iv_back"
                 android:fontFamily="@font/aclonica"
                 android:gravity="center_horizontal"
-                android:text="Gallery"
+                android:text=" My Course "
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="35sp" />

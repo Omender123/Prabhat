@@ -6,7 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CourseScreen.OfflineCourse">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="2dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/offlinecourse"
+                android:scaleType="fitXY"/>
 
+            <Button
+                android:id="@+id/offlineBuy"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="Buy Now"
+                android:background="#333"
+                android:textColor="#fff"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
     <WebView
         android:id="@+id/offlineWebView"
         android:layout_width="match_parent"
