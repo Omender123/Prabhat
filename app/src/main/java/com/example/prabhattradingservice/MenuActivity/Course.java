@@ -15,8 +15,7 @@ public class Course extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_training);
-
+        setContentView(R.layout.activity_course);
         iv_back = (ImageView) findViewById(R.id.iv_back3);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

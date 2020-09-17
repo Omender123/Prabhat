@@ -14,7 +14,7 @@ import com.example.prabhattradingservice.R;
 public class Login_Activity extends AppCompatActivity {
 EditText email,pass;
 Button signIn;
-TextView register;
+TextView register,forgetpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ TextView register;
 
         signIn=findViewById(R.id.btnSignIn);
         register=findViewById(R.id.gotoRegister);
+        forgetpassword=findViewById(R.id.forgotPassword);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +43,13 @@ TextView register;
                 finish();
             }
         });
-
+        forgetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Login_Activity.this,ForgetPassword_actiicty.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

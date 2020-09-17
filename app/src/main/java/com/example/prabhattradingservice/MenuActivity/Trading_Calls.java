@@ -15,7 +15,7 @@ public class Trading_Calls extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course);
+        setContentView(R.layout.activity_tradind_calls);
         iv_back = (ImageView) findViewById(R.id.iv_back2);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,7 +20,7 @@ RecyclerView recyclerView;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_calculator);
         actionBarSetup();
 
 
