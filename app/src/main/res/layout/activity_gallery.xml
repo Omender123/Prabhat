@@ -47,7 +47,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/iv_back4"
-                android:layout_toRightOf="@+id/iv_back"
+                android:layout_toRightOf="@+id/iv_back4"
                 android:fontFamily="@font/aclonica"
                 android:gravity="center_horizontal"
                 android:text="Gallery"

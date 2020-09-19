@@ -73,18 +73,11 @@ public class Contact_Us extends AppCompatActivity {
     public void openActivity(int click){
         switch (click){
               case 3:
-                  VisitWebsite.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View view) {
-                          String url = "https://prabhattrading.com";
+                  String url = "https://prabhattrading.com";
                           Intent i = new Intent(Intent.ACTION_VIEW);
                           i.setData(Uri.parse(url));
                           startActivity(i);
-                          animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation);
-                          VisitWebsite.startAnimation(animation);
 
-                      }
-                  });
                   break;
         }
     }

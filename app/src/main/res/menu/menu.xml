@@ -15,7 +15,7 @@
         android:title="Calculator"/>
     <item
         android:id="@+id/nav_Youtube"
-        android:icon="@drawable/ic_youtube"
+        android:icon="@drawable/ic_youtubes"
         android:title="YouTube"/>
     <item
         android:id="@+id/nav_Trading_Calls"
