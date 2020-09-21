@@ -88,7 +88,7 @@
             android:id="@+id/recyclerViewPrice"/>
 
 
-        <TextView
+      <!--  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/space5"
@@ -99,48 +99,124 @@
             android:layout_alignParentLeft="true"
             android:textSize="15dp"
             />
+-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/space5"
-    >
-    <LinearLayout
+            <Button
+                android:id="@+id/online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginBottom="@dimen/space10"
+                android:background="#FA9A47"
+                android:drawableTop="@drawable/ic_online_class"
+                android:drawablePadding="10dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text=" Online Course "
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/offline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginBottom="@dimen/space10"
+                android:id="@+id/offline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FA9A47"
+                android:drawableTop="@drawable/ic_offline"
+                android:drawablePadding="10dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Offline Course"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/online"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+       <!-- <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            &lt;!&ndash;
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space5">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-             <Button
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_teacher"
+                        android:background="#FFF"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:padding="15dp"
+                        android:text="Online Course"
+                        android:textColor="#000"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        <Button
               android:id="@+id/online"
-              android:background="#fff"
-              android:layout_margin="5dp"
-              android:layout_marginBottom="@dimen/space5"
+              android:background="#FA9A47"
+              android:layout_marginTop="20dp"
+             android:layout_marginRight="5dp"
+             android:layout_marginBottom="20dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:drawablePadding="10dp"
               android:textSize="15dp"
               android:padding="15dp"
-              android:text="( Online Course )"
+              android:textColor="@color/white"
+              android:text=" Online Course "
               android:layout_gravity="center"
-              android:drawableTop="@drawable/ic_teacher"/>
+              android:drawableTop="@drawable/ic_online_class"/>
          <Button
                 android:id="@+id/offline"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:layout_marginBottom="@dimen/space5"
-                android:layout_width="wrap_content"
+                android:layout_marginLeft="5dp"
+             android:background="#FA9A47"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
+             android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:layout_marginLeft="5dp"
                 android:drawablePadding="10dp"
                 android:padding="15dp"
-                android:text="( Offline Course )"
+                android:textColor="@color/white"
+                android:text="Offline Course"
                 android:layout_gravity="center"
                 android:drawableTop="@drawable/ic_offline"/>
 
          </LinearLayout>
-      </androidx.cardview.widget.CardView>
+-->
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
