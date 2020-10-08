@@ -19,6 +19,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
@@ -54,7 +56,7 @@ public class Home_Fragment extends Fragment {
     RecyclerView recyclerViewPrice,recyclerViewIndicator,recyclerViewPositional;
 
     YoutubeImageAdapter mRecyclerAdapter;
-    Button online,offline;
+    ImageView online,offline;
 
 
     public Home_Fragment() {

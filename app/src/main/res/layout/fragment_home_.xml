@@ -59,16 +59,24 @@
      android:paddingBottom="@dimen/space5"
      android:paddingTop="@dimen/space5"
      >
+    <ImageView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/space5"
+        android:src="@drawable/price_tag"/>
+
      <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:layout_marginStart="10dp"
+         android:layout_toEndOf="@+id/price"
          android:padding="@dimen/space5"
-         android:textAlignment="center"
          android:text="PRICE ACTION STRATEGY "
+         android:textAlignment="center"
          android:textColor="#000"
-         android:layout_alignParentLeft="true"
-         android:textSize="15dp"
-         />
+         android:textSize="15dp" />
 
      <TextView
          android:layout_width="wrap_content"
@@ -100,49 +108,71 @@
             android:textSize="15dp"
             />
 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="@dimen/space5"
+            android:paddingTop="@dimen/space5"
+            >
+            <ImageView
+                android:id="@+id/course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/space5"
+                android:src="@drawable/ic_course"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/course"
+                android:padding="@dimen/space5"
+                android:text="COURSE "
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
+            <ImageView
                 android:id="@+id/online"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginTop="@dimen/space10"
-                android:layout_marginBottom="@dimen/space10"
-                android:background="#FA9A47"
-                android:drawableTop="@drawable/ic_online_class"
-                android:drawablePadding="10dp"
+                android:scaleType="centerCrop"
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:text=" Online Course "
-                android:textColor="@color/white"
-                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:layout_marginTop="@dimen/space10"
+                android:layout_marginBottom="@dimen/space10"
+                android:src="@mipmap/online_course"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/offline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:layout_marginLeft="5dp"
+            <ImageView
+                android:id="@+id/offline"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="5dp"
+                android:scaleType="centerCrop"
+                android:background="@drawable/border"
                 android:layout_marginTop="@dimen/space10"
                 android:layout_marginBottom="@dimen/space10"
-                android:id="@+id/offline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FA9A47"
-                android:drawableTop="@drawable/ic_offline"
-                android:drawablePadding="10dp"
+                android:src="@mipmap/offline_course"
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
-                android:text="Offline Course"
-                android:textColor="@color/white"
-                android:textSize="15dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/online"
@@ -223,18 +253,27 @@
     android:layout_marginTop="8dp"
     android:paddingBottom="@dimen/space5"
     android:paddingTop="@dimen/space5">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/space5"
-            android:textAlignment="center"
-            android:text="INDICATOR BASED STRATEGY "
-            android:textColor="#000"
-            android:layout_alignParentLeft="true"
-            android:textSize="15dp"
-            />
+    <ImageView
+        android:id="@+id/indi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/space5"
+        android:src="@drawable/indicator"/>
 
-        <TextView
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/indi"
+
+        android:padding="@dimen/space5"
+        android:text="INDICATOR BASED STRATEGY "
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="15dp" />
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SEE ALL"
@@ -254,16 +293,24 @@
             android:layout_marginTop="8dp"
             android:paddingBottom="@dimen/space5"
             android:paddingTop="@dimen/space5">
+            <ImageView
+                android:id="@+id/stock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="@dimen/space5"
+                android:src="@drawable/positional_stock"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/stock"
                 android:padding="@dimen/space5"
-                android:textAlignment="center"
                 android:text="POSITIONAL STOCKS "
+                android:textAlignment="center"
                 android:textColor="#000"
-                android:layout_alignParentLeft="true"
-                android:textSize="15dp"
-                />
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"

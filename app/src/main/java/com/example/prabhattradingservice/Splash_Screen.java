@@ -33,6 +33,8 @@ private static  int SPLASH_SCREEN=2000;
 
 
         }
+
+
   /*  public void checkConnection(){
         ConnectivityManager manager=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork= manager.getActiveNetworkInfo();
