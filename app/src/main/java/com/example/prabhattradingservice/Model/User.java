@@ -14,13 +14,15 @@ public class User {
     private String mobile;
     @SerializedName("repass")
     private String repass;
-
-    public User(String name, String email, String password, String mobile, String repass) {
+    @SerializedName("otp")
+    private String otp;
+    public User(String name, String email, String password, String mobile, String repass,String otp) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.mobile = mobile;
         this.repass = repass;
+        this.otp = otp;
     }
 
     public String getName() {
@@ -60,10 +62,17 @@ public class User {
     }
 
     public void setRepass(String repass) {
-        this.repass = repass;
+        this.repass = repass; }
+
+    public String getOtp() {
+        return otp;
     }
 
-    /* public User(String name, String email, String mobile,String password,String repass) {
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+        /* public User(String name, String email, String mobile,String password,String repass) {
         this.name = name;
         this.email = email;
         this.password = password;

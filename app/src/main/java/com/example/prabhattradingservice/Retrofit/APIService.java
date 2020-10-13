@@ -23,4 +23,8 @@ public interface APIService {
     Call<MSG> userLogIn(@Field("email") String email,
                         @Field("pass") String password);
 
+    @FormUrlEncoded
+    @POST("otp")
+    Call<MSG> userotp(@Field("otp") String otp);
+
 }

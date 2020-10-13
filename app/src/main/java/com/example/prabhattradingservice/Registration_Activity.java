@@ -69,7 +69,7 @@ public class Registration_Activity extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           //   signup();
+          // signup();
             }
         });
 
@@ -180,12 +180,10 @@ public class Registration_Activity extends AppCompatActivity {
                 hidepDialog();
                 //onSignupSuccess();
                 if (response.isSuccessful()) {
-                    Intent i = new Intent(Registration_Activity.this, MainActivity.class);
+                    Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                     startActivity(i);
                     finish();
-                    Toast.makeText(getBaseContext(), "Registration Successfully complete", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "If aou are all ready registered", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
                 }
                 /*Log.d("onResponse", "" + response.body().getMessage());
                 Intent intent = new Intent(Registration_Activity.this, MainActivity.class);
