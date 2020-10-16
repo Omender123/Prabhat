@@ -12,6 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.Retrofit.APIService;
 import com.example.prabhattradingservice.Retrofit.ApiClient;
@@ -25,17 +32,21 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Verification_activity extends AppCompatActivity {
  private EditText otp;
     KProgressHUD progressDialog;
     private static final String TAG = "OTP Verification ";
-
+    RequestQueue requestQueue;
 
 Button verify;
     @Override
@@ -45,15 +56,17 @@ Button verify;
 
         verify=findViewById(R.id.btnVerify);
         otp=findViewById(R.id.inputOtp);
-
+        requestQueue= Volley.newRequestQueue(this);
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+             //   final String code=otp.getText().toString().trim();
                 Otp();
-
             }
         });
     }
+
+
 
     public void Otp() {
         Log.d(TAG, "Signup");
@@ -94,12 +107,6 @@ Button verify;
     }
 
     private void saveToServerDB() {
-       /* pDialog = new ProgressDialog(RegistrationActivity.this,
-                R.style.Theme_AppCompat_DayNight);
-        pDialog.setIndeterminate(true);
-        pDialog.setMessage("Creating Account...");
-        pDialog.setCancelable(false);
-        */
         progressDialog=  KProgressHUD.create(Verification_activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setBackgroundColor(R.color.grey_light_secondary)
@@ -111,38 +118,82 @@ Button verify;
 
         showpDialog();
 
+
+        String url ="http://prabhattrading.com/apis/otp";
         String code = otp.getText().toString();
+
+        StringRequest stringRequest =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hidepDialog();
+                Intent i = new Intent( Verification_activity.this,MainActivity.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidepDialog();
+                Toast.makeText(Verification_activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("otp",code);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+
+                // headers.put("Authorization", "Bearer "+Token);
+
+                return headers;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(stringRequest);
+      /* pDialog = new ProgressDialog(RegistrationActivity.this,
+                R.style.Theme_AppCompat_DayNight);
+        pDialog.setIndeterminate(true);
+        pDialog.setMessage("Creating Account...");
+        pDialog.setCancelable(false);
+        */
+       /* progressDialog=  KProgressHUD.create(Verification_activity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setBackgroundColor(R.color.grey_light_secondary)
+                .setLabel("Please Checking.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+
+        showpDialog();
+        String code = otp.getText().toString();
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put("otp", code);
+
+
+
 
         APIService service = ApiClient.getClient().create(APIService.class);
         //User user = new User(name, email, password);
 
 
-        Call<MSG> userotp = service.userotp(code);
+        Call<MSG> userotps = service.userotp(parameters);
 
-        userotp.enqueue(new Callback<MSG>() {
+        userotps.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(Call<MSG> call, Response<MSG> response) {
-
-                //onSignupSuccess();
-
+                hidepDialog();
                 if (response.isSuccessful()) {
-                    hidepDialog();
-
-                    if (response.body().getSuccess().equals(" 1")) {
-                        Intent i = new Intent( Verification_activity.this,MainActivity.class);
-                        startActivity(i);
-                        finish();
-                        Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
-
-                    } else {
-
-                        Toast.makeText(getApplicationContext(), "Please Enter Right Otp", Toast.LENGTH_LONG).show();
-
-
-                    }
-
-                }
-               /* if (response.isSuccessful()) {
                     Intent i = new Intent( Verification_activity.this,MainActivity.class);
                     startActivity(i);
                     finish();
@@ -150,22 +201,18 @@ Button verify;
                 } else {
                     Toast.makeText(getApplicationContext(), "Please Enter Right Otp", Toast.LENGTH_LONG).show();
                 }
-               */ /*Log.d("onResponse", "" + response.body().getMessage());
-                Intent intent = new Intent(Registration_Activity.this, MainActivity.class);
-                     //  intent.putExtra("phoneno.",mobile);
-                       startActivity(intent);
-                       finish();
-                Toast.makeText(getBaseContext(), "Registration Successfully complete", Toast.LENGTH_LONG).show();
-           */ }
+
+            }
 
             @Override
             public void onFailure(Call<MSG> call, Throwable t) {
                 hidepDialog();
                 Log.d("onFailure", t.toString());
                 Toast.makeText(getBaseContext(), " "+t.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
-    }
+   */ }
 
     private void showpDialog() {
         if (!progressDialog.isShowing())

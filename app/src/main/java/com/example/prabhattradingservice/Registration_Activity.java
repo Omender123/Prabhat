@@ -12,19 +12,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
-
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.Retrofit.APIService;
 import com.example.prabhattradingservice.Retrofit.ApiClient;
+import com.google.gson.JsonObject;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.HashMap;
@@ -57,6 +54,8 @@ public class Registration_Activity extends AppCompatActivity {
         _passwordText = (EditText) findViewById(R.id.inputPassword);
         _reEnterPasswordText = (EditText) findViewById(R.id.inputRePassword);
 
+        requestQueue= Volley.newRequestQueue(this);
+
         SignUp = findViewById(R.id.btnSignUp);
         //if the user is already logged in we will directly start the profile activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -69,12 +68,11 @@ public class Registration_Activity extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-          // signup();
+           signup();
             }
         });
 
     }
-
     public void signup() {
         Log.d(TAG, "Signup");
 
@@ -145,12 +143,14 @@ public class Registration_Activity extends AppCompatActivity {
     }
 
     private void saveToServerDB() {
-       /* pDialog = new ProgressDialog(RegistrationActivity.this,
+
+ /*pDialog = new ProgressDialog(RegistrationActivity.this,
                 R.style.Theme_AppCompat_DayNight);
         pDialog.setIndeterminate(true);
         pDialog.setMessage("Creating Account...");
         pDialog.setCancelable(false);
         */
+
        progressDialog=  KProgressHUD.create(Registration_Activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Please wait.....")
@@ -174,32 +174,32 @@ public class Registration_Activity extends AppCompatActivity {
 
         Call<MSG> userCall = service.userSignUp(name, email,mobile, password,reEnterPassword);
 
+
         userCall.enqueue(new Callback<MSG>() {
             @Override
             public void onResponse(Call<MSG> call, Response<MSG> response) {
                 hidepDialog();
-                //onSignupSuccess();
+
                 if (response.isSuccessful()) {
                     Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                     startActivity(i);
                     finish();
                     Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getBaseContext(), "All ready Registered", Toast.LENGTH_LONG).show();
                 }
-                /*Log.d("onResponse", "" + response.body().getMessage());
-                Intent intent = new Intent(Registration_Activity.this, MainActivity.class);
-                     //  intent.putExtra("phoneno.",mobile);
-                       startActivity(intent);
-                       finish();
-                Toast.makeText(getBaseContext(), "Registration Successfully complete", Toast.LENGTH_LONG).show();
-           */ }
+
+            }
 
             @Override
             public void onFailure(Call<MSG> call, Throwable t) {
                 hidepDialog();
                 Log.d("onFailure", t.toString());
-                Toast.makeText(getBaseContext(), "All ready Registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Your Email and Mobile No. is all ready exits", Toast.LENGTH_LONG).show();
+
             }
         });
+
     }
 
     private void showpDialog() {
@@ -211,5 +211,6 @@ public class Registration_Activity extends AppCompatActivity {
         if (progressDialog.isShowing())
             progressDialog.dismiss();
     }
+
 
 }

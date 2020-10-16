@@ -45,10 +45,7 @@ public class Login_Activity extends AppCompatActivity {
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent =new Intent(Login_Activity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
-                //login();
+                 login();
             }
         });
 
@@ -126,27 +123,11 @@ public class Login_Activity extends AppCompatActivity {
                         finish();
                     Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
                 } else {
+
                     Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
                 }
             }
 
-             /*   //onSignupSuccess();
-                Log.d("onResponse", "" + response.body().getMessage());
-
-              *//*  startActivity(new Intent(Login_Activity.this, MainActivity.class));
-                finish();
-                Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
-              *//*
-              if(response.body().getSuccess() == 1) {
-                    startActivity(new Intent(Login_Activity.this, MainActivity.class));
-                    finish();
-                    Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
-
-                    finish();
-                }else {
-                    Toast.makeText(Login_Activity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-*/
 
             @Override
             public void onFailure(Call<MSG> call, Throwable t) {

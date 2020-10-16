@@ -3,8 +3,11 @@ package com.example.prabhattradingservice.Retrofit;
 
 import com.example.prabhattradingservice.Model.MSG;
 
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -25,6 +28,11 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("otp")
-    Call<MSG> userotp(@Field("otp") String otp);
+    Call<MSG> userotp(@FieldMap Map<String, String> otp);
+
+    @FormUrlEncoded
+    @POST("forget-password")
+    Call<MSG> forgetPassword(@Field("email") String email);
+
 
 }
