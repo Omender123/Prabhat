@@ -69,7 +69,7 @@ public class ForgetPassword_actiicty extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "please check Your Email", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Please enter Your right email", Toast.LENGTH_LONG).show();
 
         Continue.setEnabled(true);
     }
@@ -116,18 +116,18 @@ public class ForgetPassword_actiicty extends AppCompatActivity {
             public void onResponse(Call<MSG> call, Response<MSG> response) {
                 hidepDialog();
 
-                if (response.isSuccessful()) {
                     Intent i = new Intent(ForgetPassword_actiicty.this, Login_Activity.class);
                     startActivity(i);
                     finish();
-                    Toast.makeText(getBaseContext(), "Password is send in your Registered Email", Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(getBaseContext(), "Password is send in your Registered Email.", Toast.LENGTH_LONG).show();
+
 
             }
             @Override
             public void onFailure(Call<MSG> call, Throwable t) {
                 hidepDialog();
                 Log.d("onFailure", t.toString());
+                Toast.makeText(ForgetPassword_actiicty.this, "Please enter registered email and  check email ...", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getBaseContext(), ""+t.toString(), Toast.LENGTH_LONG).show();
 
             }

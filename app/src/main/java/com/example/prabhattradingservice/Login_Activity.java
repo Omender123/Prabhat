@@ -13,20 +13,36 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Model.MSG;
+import com.example.prabhattradingservice.Model.User;
 import com.example.prabhattradingservice.R;
 import com.example.prabhattradingservice.Retrofit.APIService;
 import com.example.prabhattradingservice.Retrofit.ApiClient;
+import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
+import com.example.prabhattradingservice.SharedPrefernce.UserData;
 import com.kaopiz.kprogresshud.KProgressHUD;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Login_Activity extends AppCompatActivity {
     EditText _emailText, _passwordText;
     Button _loginButton;
     TextView register, forgetpassword;
+    RequestQueue requestQueue;
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     KProgressHUD pDialog;
@@ -39,13 +55,18 @@ public class Login_Activity extends AppCompatActivity {
         _loginButton = findViewById(R.id.btnSignIn);
         register = findViewById(R.id.gotoRegister);
         forgetpassword = findViewById(R.id.forgotPassword);
+        requestQueue= Volley.newRequestQueue(this);
 
         _emailText = findViewById(R.id.inputEmail);
         _passwordText = findViewById(R.id.inputPassword);
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 login();
+          //  login();
+               Intent i = new Intent(Login_Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
             }
         });
 
@@ -107,8 +128,75 @@ public class Login_Activity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
+   String url="http://prabhattrading.com/apis/signin";
 
-        APIService service = ApiClient.getClient().create(APIService.class);
+      StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+          @Override
+          public void onResponse(String response) {
+              hidepDialog();
+
+              try {
+                  //converting response to json object
+                  JSONObject obj = new JSONObject(response);
+
+                  //if no error in response
+                       //getting the user from the response
+                      JSONObject userJson = obj.getJSONObject("data");
+
+                      //creating a new user object
+                      UserData user = new UserData(
+                              userJson.getInt("id"),
+                              userJson.getString("name"),
+                              userJson.getString("email"),
+                              userJson.getString("mobile")
+                      );
+
+                      //storing the user in shared preferences
+                      SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+                      //starting the profile activity
+                      finish();
+                      startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                      Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
+
+              } catch (JSONException e) {
+                  e.printStackTrace();
+              //    Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
+                  //  Toast.makeText(Login_Activity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+              }
+          }
+
+      }, new Response.ErrorListener() {
+          @Override
+          public void onErrorResponse(VolleyError error) {
+              hidepDialog();
+              Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
+             // Toast.makeText(Login_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+          }
+      }){
+
+          @Override
+          protected Map<String, String> getParams() throws AuthFailureError {
+              Map<String, String> params = new HashMap<>();
+              params.put("email", email);
+              params.put("pass", password);
+              return params;
+          }
+
+          @Override
+          public Map<String, String> getHeaders() throws AuthFailureError {
+              Map<String, String> headers = new HashMap<String, String>();
+
+              // headers.put("Authorization", "Bearer "+Token);
+
+              return headers;
+          }
+      };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+    }
+       /* APIService service = ApiClient.getClient().create(APIService.class);
 
         Call<MSG> userCall = service.userLogIn(email, password);
 
@@ -118,11 +206,32 @@ public class Login_Activity extends AppCompatActivity {
                 hidepDialog();
 
                 if (response.isSuccessful()) {
-                     Intent i = new Intent(Login_Activity.this, MainActivity.class);
+                    try {
+                        JSONObject  jsonObject =new JSONObject(String.valueOf(response));
+                        JSONObject userJson = jsonObject.getJSONObject("data");
+                        //creating a new user object
+                        UserData user = new UserData(
+                                userJson.getInt("id"),
+                                userJson.getString("name"),
+                                userJson.getString("email"),
+                                userJson.getString("mobile")
+                        );
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+                        Intent i = new Intent(Login_Activity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                        Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                        Toast.makeText(Login_Activity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                  *//*  Intent i = new Intent(Login_Activity.this, MainActivity.class);
                         startActivity(i);
                         finish();
                     Toast.makeText(Login_Activity.this, "Login Successfully ", Toast.LENGTH_SHORT).show();
-                } else {
+           *//*     } else {
 
                     Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
                 }
@@ -137,7 +246,8 @@ public class Login_Activity extends AppCompatActivity {
 
             }
         });
-    }
+        }
+*/
 
     private void showpDialog() {
         if (!pDialog.isShowing())
@@ -162,7 +272,7 @@ public class Login_Activity extends AppCompatActivity {
         }
     }
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Please fill all requirements", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }

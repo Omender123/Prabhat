@@ -1,4 +1,4 @@
-package com.example.prabhattradingservice.Model;
+package com.example.prabhattradingservice.SharedPrefernce;
 
 public class UserData {
     private int id;

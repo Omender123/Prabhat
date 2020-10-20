@@ -1,10 +1,8 @@
 package com.example.prabhattradingservice;
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,8 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -21,15 +21,18 @@ import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.Retrofit.APIService;
 import com.example.prabhattradingservice.Retrofit.ApiClient;
-import com.google.gson.JsonObject;
+import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
+import com.example.prabhattradingservice.SharedPrefernce.UserData;
 import com.kaopiz.kprogresshud.KProgressHUD;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class Registration_Activity extends AppCompatActivity {
@@ -37,7 +40,7 @@ public class Registration_Activity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     Button SignUp;
      KProgressHUD progressDialog;
-    // String url="http://prabhattrading.com/API/signup";
+     String url="http://prabhattrading.com/API/signup";
     RequestQueue requestQueue;
 
     public Registration_Activity() {
@@ -56,19 +59,29 @@ public class Registration_Activity extends AppCompatActivity {
 
         requestQueue= Volley.newRequestQueue(this);
 
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this,MainActivity.class));
+            return;
+        }
         SignUp = findViewById(R.id.btnSignUp);
         //if the user is already logged in we will directly start the profile activity
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+      /*  if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, Home_Fragment.class));
             return;
-        }
+        }*/
 
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           signup();
+      //signup();
+
+                Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+                startActivity(i);
+                finish();
+
             }
         });
 
@@ -90,7 +103,7 @@ public class Registration_Activity extends AppCompatActivity {
     }
 
     public void onSignupFailed() {
-        Toast.makeText(getBaseContext(), "Registration failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Please fill all requirement ", Toast.LENGTH_LONG).show();
 
         SignUp.setEnabled(true);
     }
@@ -167,8 +180,76 @@ public class Registration_Activity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
+        StringRequest request=new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hidepDialog();
+                try {
+                    //converting response to json object
+                    JSONObject obj = new JSONObject(response);
+                    //getting the user from the response
+                        JSONObject userJson = obj.getJSONObject("data");
 
-        APIService service = ApiClient.getClient().create(APIService.class);
+                        //creating a new user object
+                        UserData user = new UserData(
+                                userJson.getInt("id"),
+                                userJson.getString("username"),
+                                userJson.getString("email"),
+                                userJson.getString("gender")
+                        );
+
+
+                    Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+                    startActivity(i);
+                    finish();
+                    Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
+
+                    //storing the user in shared preferences
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getBaseContext(), "All ready Registered", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(Registration_Activity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidepDialog();
+                Toast.makeText(getBaseContext(), "Your Email and Mobile No. is all ready exits", Toast.LENGTH_LONG).show();
+
+                //Toast.makeText(Registration_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+               params.put("name",name);
+                params.put("email", email);
+                params.put("mobile",mobile);
+                params.put("pass", password);
+                params.put("re_pass", reEnterPassword);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+
+                // headers.put("Authorization", "Bearer "+Token);
+
+                return headers;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+
+       /* APIService service = ApiClient.getClient().create(APIService.class);
         //User user = new User(name, email, password);
 
 
@@ -181,11 +262,30 @@ public class Registration_Activity extends AppCompatActivity {
                 hidepDialog();
 
                 if (response.isSuccessful()) {
-                    Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+                    try {
+                        JSONObject jsonObject =new JSONObject(String.valueOf(response));
+                        JSONObject userJson = jsonObject.getJSONObject("data");
+                        //creating a new user object
+                        UserData user = new UserData(
+                                userJson.getInt("id"),
+                                userJson.getString("name"),
+                                userJson.getString("email"),
+                                userJson.getString("mobile")
+                        );
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+                        Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+                        startActivity(i);
+                        finish();
+                        Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                   *//* Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                     startActivity(i);
                     finish();
                     Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
-                }else{
+             *//*   }else{
                     Toast.makeText(getBaseContext(), "All ready Registered", Toast.LENGTH_LONG).show();
                 }
 
@@ -199,7 +299,7 @@ public class Registration_Activity extends AppCompatActivity {
 
             }
         });
-
+*/
     }
 
     private void showpDialog() {

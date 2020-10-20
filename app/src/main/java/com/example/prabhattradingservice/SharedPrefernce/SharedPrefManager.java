@@ -1,10 +1,10 @@
-package com.example.prabhattradingservice;
+package com.example.prabhattradingservice.SharedPrefernce;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.example.prabhattradingservice.Model.UserData;
+import com.example.prabhattradingservice.Login_Activity;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "Prebhat";

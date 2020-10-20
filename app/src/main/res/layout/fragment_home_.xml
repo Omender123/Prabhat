@@ -55,9 +55,9 @@
  <RelativeLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:layout_marginTop="8dp"
-     android:paddingBottom="@dimen/space5"
-     android:paddingTop="@dimen/space5"
+     android:layout_marginTop="5dp"
+     android:layout_marginBottom="2dp"
+
      >
     <ImageView
         android:id="@+id/price"
@@ -111,26 +111,23 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingBottom="@dimen/space5"
-            android:paddingTop="@dimen/space5"
+            android:layout_marginTop="5dp"
+
             >
             <ImageView
                 android:id="@+id/course"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:padding="@dimen/space5"
+
                 android:src="@drawable/ic_course"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/course"
-                android:padding="@dimen/space5"
                 android:text="COURSE "
-                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp" />
 
@@ -229,9 +226,8 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:paddingBottom="@dimen/space5"
-    android:paddingTop="@dimen/space5">
+    android:layout_marginTop="5dp"
+    >
     <ImageView
         android:id="@+id/indi"
         android:layout_width="wrap_content"
@@ -269,9 +265,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:paddingBottom="@dimen/space5"
-            android:paddingTop="@dimen/space5">
+            android:layout_marginTop="5dp"
+           >
             <ImageView
                 android:id="@+id/stock"
                 android:layout_width="wrap_content"

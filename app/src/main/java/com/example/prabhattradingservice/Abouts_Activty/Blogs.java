@@ -15,6 +15,7 @@ import com.example.prabhattradingservice.R;
 
 public class Blogs extends AppCompatActivity {
 ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

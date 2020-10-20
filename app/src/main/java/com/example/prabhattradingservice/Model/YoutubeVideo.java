@@ -6,6 +6,16 @@ public class YoutubeVideo {
     private String videoId;
     private String imageUrl;
 
+    public YoutubeVideo() {
+    }
+
+    public YoutubeVideo(String title, Long id, String videoId, String imageUrl) {
+        this.title = title;
+        this.id = id;
+        this.videoId = videoId;
+        this.imageUrl = imageUrl;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }

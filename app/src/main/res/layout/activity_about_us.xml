@@ -80,7 +80,18 @@
         <WebView
             android:id="@+id/AboutWebView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:justificationMode="inter_word"
+            android:textSize="12dp"
+            android:textColor="#333"
+            android:layout_margin="5dp"
+            android:lineHeight="20px"
+            />
     </LinearLayout>
 
 </ScrollView>

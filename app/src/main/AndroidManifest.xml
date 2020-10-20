@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prabhattradingservice">
+    package="com.example.prabhattradingservice" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,14 +14,19 @@
         android:roundIcon="@mipmap/application_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".CourseScreen.OfflineCourse"></activity>
+        android:usesCleartextTraffic="true" >
+        <activity android:name=".ProfileActivty"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+        </activity>
+        <activity android:name=".CourseScreen.OfflineCourse" />
         <activity android:name=".CourseScreen.OnlineCourse" />
         <activity
             android:name=".MenuActivity.FeedBack_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ForgetPassword_actiicty"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ForgetPassword_actiicty"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Verification_activity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -42,20 +47,23 @@
         <activity
             android:name=".MenuActivity.About"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuActivity.Course"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MenuActivity.Course"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuActivity.Calculator" />
-        <activity android:name=".MenuActivity.Gallery"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MenuActivity.Trading_Calls"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MenuActivity.Gallery"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MenuActivity.Trading_Calls"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Abouts_Activty.About_us" />
         <activity
             android:name=".MenuActivity.Contact_Us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Splash_Screen"
-            android:theme="@style/AppTheme.NoActionBar1">
+            android:theme="@style/AppTheme.NoActionBar1" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

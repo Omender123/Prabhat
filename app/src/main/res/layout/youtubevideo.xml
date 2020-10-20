@@ -39,10 +39,10 @@
         <ImageView
             android:id="@+id/imageViewItem"
             android:layout_width="250dp"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             android:layout_marginRight="10dp"
             android:contentDescription="TODO"
-            android:scaleType="fitXY"
+            android:scaleType="centerInside"
             android:background="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

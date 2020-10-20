@@ -191,7 +191,8 @@ public class Home_Fragment extends Fragment {
         ArrayList mYoutubeVideo = new ArrayList();
         // add first item
         YoutubeImagesModel video1 = new YoutubeImagesModel();
-        video1.setImageUrl("https://i.ytimg.com/vi/rfbw6BymkxA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAu0AVNi9tgj0roTOkddpJ34OSZ4w");
+        video1.setImageUrl("http://prabhattrading.com/apis/image/firstss.jpeg");
+      //  video1.setImageUrl("https://i.ytimg.com/vi/rfbw6BymkxA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAu0AVNi9tgj0roTOkddpJ34OSZ4w");
        // video1.setTitle("Thugs Of Hindostan - Official Trailer | Amitabh Bachchan | Aamir Khan | Katrina Kaif | Fatima");
         mYoutubeVideo.add(video1);
 
@@ -212,6 +213,7 @@ public class Home_Fragment extends Fragment {
         YoutubeImagesModel video4 = new YoutubeImagesModel();
 
         video4.setImageUrl("https://i.ytimg.com/vi/07CKQzaI3F8/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCBnMtEEcuk8Ada3rh0VyKEfYYs4g");
+        mYoutubeVideo.add(video4);
       //  video4.setTitle("EXPERIMENT Glowing 1000 degree METAL BALL vs Gunpowder (100 grams)");
 
 

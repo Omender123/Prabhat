@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prabhattradingservice.MenuActivity.About;
@@ -32,12 +33,19 @@ import com.example.prabhattradingservice.MenuActivity.FeedBack_Activity;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
 import com.example.prabhattradingservice.MenuActivity.Trading_Calls;
 import com.example.prabhattradingservice.MenuActivity.Course;
+import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
+import com.example.prabhattradingservice.SharedPrefernce.UserData;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
     FloatingActionButton message,phone;
+    private View navHeader;
+    TextView name,email,mobile;
+    CircleImageView imgProfile,imgEdit;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
        /* toolbar.setTitle("Prabhat Trading Service");
 */
-        message=findViewById(R.id.message);
+     message=findViewById(R.id.message);
         phone=findViewById(R.id.phone);
         message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +83,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        // toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
         toggle.syncState();
 
+
+        navHeader = navigationView.getHeaderView(0);
+        name = (TextView) navHeader.findViewById(R.id.ProfileName);
+        email= (TextView) navHeader.findViewById(R.id.profliegmail);
+        mobile = (TextView) navHeader.findViewById(R.id.profileNumber);
+        imgEdit = (CircleImageView) navHeader.findViewById(R.id.profileEdit);
+        imgProfile = (CircleImageView) navHeader.findViewById(R.id.profileImage);
+
+        //getting the current user
+        UserData user = SharedPrefManager.getInstance(this).getUser();
+
+        //setting the values to the textviews
+       name.setText(user.getName());
+       email.setText(user.getEmail());
+       mobile.setText(user.getMobile());
+
         navigationView.setNavigationItemSelectedListener(this);
 
         if (savedInstanceState==null){
@@ -84,7 +108,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
+        imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ProfileActivty.class));
+            }
+        });
         //    checkConnection();
        changeStatusBarColor();
 
@@ -159,8 +188,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AlertDialogBox();
                 Toast.makeText(this, "Welcome to Logout ", Toast.LENGTH_SHORT).show();
                 break;
-
-
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -223,7 +250,7 @@ public void share(){
     }
 
    public void AlertDialogBox(){
-
+//Logout
 
        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 
@@ -237,7 +264,7 @@ public void share(){
                .setCancelable(false)
                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
-
+                       SharedPrefManager.getInstance(getApplicationContext()).logout();
                        Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
 
                    }

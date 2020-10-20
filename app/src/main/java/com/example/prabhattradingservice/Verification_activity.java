@@ -15,32 +15,21 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.Retrofit.APIService;
 import com.example.prabhattradingservice.Retrofit.ApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Verification_activity extends AppCompatActivity {
  private EditText otp;
@@ -107,7 +96,7 @@ Button verify;
     }
 
     private void saveToServerDB() {
-        progressDialog=  KProgressHUD.create(Verification_activity.this)
+       /* progressDialog=  KProgressHUD.create(Verification_activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setBackgroundColor(R.color.grey_light_secondary)
                 .setLabel("Please Checking.....")
@@ -126,11 +115,14 @@ Button verify;
             @Override
             public void onResponse(String response) {
                 hidepDialog();
-                Intent i = new Intent( Verification_activity.this,MainActivity.class);
-                startActivity(i);
-                finish();
-                Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
-
+              if (! response.equalsIgnoreCase("error")){
+                  Intent i = new Intent( Verification_activity.this,MainActivity.class);
+                  startActivity(i);
+                  finish();
+                  Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
+              }else {
+                  Toast.makeText(Verification_activity.this, "Please enter right otp"*//*+error.toString()*//*, Toast.LENGTH_SHORT).show();
+              }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -160,13 +152,9 @@ Button verify;
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
-      /* pDialog = new ProgressDialog(RegistrationActivity.this,
-                R.style.Theme_AppCompat_DayNight);
-        pDialog.setIndeterminate(true);
-        pDialog.setMessage("Creating Account...");
-        pDialog.setCancelable(false);
-        */
-       /* progressDialog=  KProgressHUD.create(Verification_activity.this)
+     */
+
+      progressDialog=  KProgressHUD.create(Verification_activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setBackgroundColor(R.color.grey_light_secondary)
                 .setLabel("Please Checking.....")
@@ -201,7 +189,6 @@ Button verify;
                 } else {
                     Toast.makeText(getApplicationContext(), "Please Enter Right Otp", Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
@@ -212,7 +199,7 @@ Button verify;
 
             }
         });
-   */ }
+    }
 
     private void showpDialog() {
         if (!progressDialog.isShowing())

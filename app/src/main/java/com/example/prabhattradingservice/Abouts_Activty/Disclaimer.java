@@ -10,22 +10,79 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.R;
+import com.kaopiz.kprogresshud.KProgressHUD;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Disclaimer extends AppCompatActivity {
 ActionBar actionBar;
     WebView webView;
+    TextView disclaimer;
+    KProgressHUD progressDialog;
+    RequestQueue requestQueue;
+    String url="http://prabhattrading.com/apis/disclaimer";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disclaimer);
-        webView= findViewById(R.id.webDisclaimer);
+      /*  webView= findViewById(R.id.webDisclaimer);
         String url="file:///android_asset/Disclaimer.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
+*/
+        disclaimer=findViewById(R.id.disclaimer);
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
 
+        progressDialog=  KProgressHUD.create(Disclaimer.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Loading.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+
+        showpDialog();
+
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hidepDialog();
+                try {
+                    //converting response to json object
+                    JSONObject obj = new JSONObject(response);
+                    //getting the user from the response
+                    JSONObject userJson = obj.getJSONObject("data");
+                    String abouts=userJson.getString("disclaimer");
+                    disclaimer.setText(abouts);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidepDialog();
+                Toast.makeText(Disclaimer.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(stringRequest);
 
         actionBarSetup();
     }
@@ -69,6 +126,15 @@ ActionBar actionBar;
         startActivity(intent);
         finish();
 
+    }
+    private void showpDialog() {
+        if (!progressDialog.isShowing())
+            progressDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
     }
 
 }

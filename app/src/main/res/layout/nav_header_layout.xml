@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="bottom"
     android:padding="5dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:background="@mipmap/bg">
@@ -14,20 +13,23 @@
         android:layout_height="110dp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp">
-        <com.alexzh.circleimageview.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_name"
-            android:scaleType="fitXY"
-            app:view_borderColor="#fff"
-            app:view_borderWidth="2dp"
+            android:scaleType="centerCrop"
+            app:civ_circle_background_color="#FFF"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
             />
-        <com.alexzh.circleimageview.CircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileEdit"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            app:civ_circle_background_color="#FFF"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="@dimen/space10"
             android:src="@drawable/ic_baseline_add_circle_outline_24"/>
@@ -50,7 +52,7 @@
     />
 
     <TextView
-        android:id="@+id/gmail"
+        android:id="@+id/profliegmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gmail : info@prabhattrading.com"
@@ -65,7 +67,7 @@
         android:layout_marginBottom="10dp"
         />
     <TextView
-        android:id="@+id/Number"
+        android:id="@+id/profileNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone No. : +91-7065634746"

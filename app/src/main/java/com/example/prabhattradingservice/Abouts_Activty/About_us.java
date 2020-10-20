@@ -21,15 +21,34 @@ import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.R;
+import com.example.prabhattradingservice.Registration_Activity;
+import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
+import com.example.prabhattradingservice.SharedPrefernce.UserData;
+import com.example.prabhattradingservice.Verification_activity;
+import com.kaopiz.kprogresshud.KProgressHUD;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class About_us extends AppCompatActivity {
     ActionBar actionBar;
-
+TextView about;
+    KProgressHUD progressDialog;
+RequestQueue requestQueue;
+String url="http://prabhattrading.com/apis/about-us";
     WebView webView;
+
 
     @SuppressLint("WrongConstant")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -38,12 +57,51 @@ public class About_us extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         actionBarSetup();
-        webView= findViewById(R.id.AboutWebView);
+        /*webView= findViewById(R.id.AboutWebView);
         String url="file:///android_asset/About_Us.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
+*/
+        about=findViewById(R.id.about);
+  requestQueue= Volley.newRequestQueue(getApplicationContext());
+
+        progressDialog=  KProgressHUD.create(About_us.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Loading.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+
+        showpDialog();
+
+  StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+      @Override
+      public void onResponse(String response) {
+     hidepDialog();
+          try {
+              //converting response to json object
+              JSONObject obj = new JSONObject(response);
+              //getting the user from the response
+              JSONObject userJson = obj.getJSONObject("data");
+              String abouts=userJson.getString("about_us");
+                 about.setText(abouts);
 
 
+          } catch (JSONException e) {
+              e.printStackTrace();
+          }
+      }
+
+  }, new Response.ErrorListener() {
+      @Override
+      public void onErrorResponse(VolleyError error) {
+          hidepDialog();
+          Toast.makeText(About_us.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+      }
+  });
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(stringRequest);
 
        /* firstTxt = findViewById(R.id.firstTxt1);
         String text = getResources().getString(R.string.first);
@@ -107,4 +165,14 @@ public class About_us extends AppCompatActivity {
         finish();
 
     }
+    private void showpDialog() {
+        if (!progressDialog.isShowing())
+            progressDialog.show();
+    }
+
+    private void hidepDialog() {
+        if (progressDialog.isShowing())
+            progressDialog.dismiss();
+    }
+
 }

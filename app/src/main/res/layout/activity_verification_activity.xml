@@ -62,7 +62,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
         android:textAlignment="center"
-        android:text="Verify Our  Otp?"
+        android:text="Verify Your Account ?"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"

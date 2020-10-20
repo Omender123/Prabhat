@@ -109,7 +109,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/disclaimer"
+                android:id="@+id/email"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_columnWeight="0.8"
