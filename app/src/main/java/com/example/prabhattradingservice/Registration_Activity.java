@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -119,6 +120,7 @@ public class Registration_Activity extends AppCompatActivity {
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
+            requestFocus(_nameText);
             valid = false;
         } else {
             _nameText.setError(null);
@@ -127,12 +129,14 @@ public class Registration_Activity extends AppCompatActivity {
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");
+            requestFocus(_emailText);
             valid = false;
         } else {
             _emailText.setError(null);
         }
         if (mobile.isEmpty() || mobile.length()<10) {
             _mobileText.setError("enter a Mobile");
+            requestFocus(_mobileText);
             valid = false;
         } else {
             _mobileText.setError(null);
@@ -140,6 +144,7 @@ public class Registration_Activity extends AppCompatActivity {
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");
+            requestFocus(_passwordText);
             valid = false;
         } else {
             _passwordText.setError(null);
@@ -147,6 +152,7 @@ public class Registration_Activity extends AppCompatActivity {
 
         if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
             _reEnterPasswordText.setError("Password Do not match");
+            requestFocus(_reEnterPasswordText);
             valid = false;
         } else {
             _reEnterPasswordText.setError(null);
@@ -312,5 +318,9 @@ public class Registration_Activity extends AppCompatActivity {
             progressDialog.dismiss();
     }
 
-
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
+    }
 }

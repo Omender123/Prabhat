@@ -32,18 +32,19 @@ ActionBar actionBar;
     KProgressHUD progressDialog;
     RequestQueue requestQueue;
     TextView returns;
-    String url="http://prabhattrading.com/apis/returns";
+    String url="http://prabhattrading.com/apis/policy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_returns);
-       webView= findViewById(R.id.webReturns);
+      /* webView= findViewById(R.id.webReturns);
         String url="file:///android_asset/Returns.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
-      //  returns=findViewById(R.id.Returns);
-     /*   requestQueue= Volley.newRequestQueue(getApplicationContext());
+   */
+        returns=findViewById(R.id.Returns);
+       requestQueue= Volley.newRequestQueue(getApplicationContext());
 
         progressDialog=  KProgressHUD.create(Returns.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
@@ -58,21 +59,21 @@ ActionBar actionBar;
         StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                hidepDialog();
+             hidepDialog();
                 try {
                     //converting response to json object
                     JSONObject obj = new JSONObject(response);
                     //getting the user from the response
                     JSONObject userJson = obj.getJSONObject("data");
-                    String abouts=userJson.getString("returns");
-                    returns.setText(abouts);
+                    String abouts=userJson.getString("policy");
+                   returns.setText(abouts);
 
-
+                    //  Toast.makeText(Terms.this, ""+response, Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+               // Toast.makeText(Returns.this, ""+response, Toast.LENGTH_SHORT).show();
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -82,7 +83,7 @@ ActionBar actionBar;
         });
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
-*/
+
         actionBarSetup();
     }
     @Override
