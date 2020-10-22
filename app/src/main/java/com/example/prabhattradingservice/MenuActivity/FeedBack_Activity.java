@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -17,18 +19,25 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prabhattradingservice.Login_Activity;
 import com.example.prabhattradingservice.MainActivity;
+import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.R;
+import com.example.prabhattradingservice.Retrofit.APIService;
+import com.example.prabhattradingservice.Retrofit.ApiClient;
 import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
 import com.example.prabhattradingservice.SharedPrefernce.UserData;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FeedBack_Activity extends AppCompatActivity {
     Animation animation;
@@ -40,8 +49,8 @@ public class FeedBack_Activity extends AppCompatActivity {
     RequestQueue requestQueue;
     KProgressHUD pDialog;
     String Rating;
-    String feedbacks;
     String id;
+    private static final int REQUEST_Feedback = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,28 +63,30 @@ public class FeedBack_Activity extends AppCompatActivity {
         requestQueue= Volley.newRequestQueue(this);
         UserData user = SharedPrefManager.getInstance(this).getUser();
 
-        feedbacks=feedback.getText().toString().trim();
+
+
         id=String.valueOf(user.getId());
+
         rbStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if(rating==1)
+                if(rating==0.5 || rating==1)
                 {
                     tvFeedback.setText("Very Bad");
                 }
-                else if(rating==2)
+                else if(rating==1.5 ||rating==2)
                 {
                     tvFeedback.setText("Bad");
                 }
-                else if(rating==3)
+                else if(rating==2.5 ||rating==3)
                 {
                     tvFeedback.setText("Good");
                 }
-                else if(rating==4)
+                else if(rating==3.5 ||rating==4)
                 {
                     tvFeedback.setText("Very Good");
                 }
-                else if(rating==5)
+                else if(rating==4.5 ||rating==5)
                 {
                     tvFeedback.setText("Excellent");
                 }
@@ -89,6 +100,7 @@ public class FeedBack_Activity extends AppCompatActivity {
             }
 
         });
+
 
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,66 +119,56 @@ public class FeedBack_Activity extends AppCompatActivity {
           animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation);
           btnSend.startAnimation(animation);
 
-           if (feedbacks.isEmpty()){
-               feedback.setError("Please Enter Your Feedback");
-               feedback.requestFocus();
-           }else if(Rating.isEmpty()) {
-               Toast.makeText(FeedBack_Activity.this, "Please give the rating ", Toast.LENGTH_SHORT).show();
-           }else {
-             /*  pDialog = KProgressHUD.create(getApplicationContext())
-                       .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                       .setLabel("Sending........")
-                       .setCancellable(false)
-                       .setAnimationSpeed(2)
-                       .setDimAmount(0.5f);
-//                       .show();
-                      showpDialog();
-           */
 
-               String url = "http://prabhattrading.com/apis/feedback";
-
-               StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                   @Override
-                   public void onResponse(String response) {
-                       Toast.makeText(FeedBack_Activity.this, ""+response, Toast.LENGTH_SHORT).show();
-                   }
-               }, new Response.ErrorListener() {
-                   @Override
-                   public void onErrorResponse(VolleyError error) {
-                       Toast.makeText(FeedBack_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
-
-                   }
-               }){
-                   @Override
-                   protected Map<String, String> getParams() throws AuthFailureError {
-                       Map<String, String> params = new HashMap<>();
-                       params.put("user_id,",id);
-                       params.put("rating",Rating);
-                       params.put("feedback",feedbacks);
-
-                       return params;
-                   }
-
-                   @Override
-                   public Map<String, String> getHeaders() throws AuthFailureError {
-                       Map<String, String> headers = new HashMap<String, String>();
-
-                       // headers.put("Authorization", "Bearer "+Token);
-
-                       return headers;
-                   }
-               };
-
-               RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-               queue.add(stringRequest);
-           }
-
-         // Toast.makeText(FeedBack_Activity.this, "Thank you for give Rating and Feedback "+Rating, Toast.LENGTH_SHORT).show();
-      }
+          }
   });
 
     }
-    private void showpDialog() {
+
+    public void feedback() {
+      //  Log.d(TAG, "Login");
+
+        if (validate() == false) {
+            onLoginFailed();
+            return;
+        }
+
+        //_loginButton.setEnabled(false);
+
+        loginByServer();
+    }
+
+    private void loginByServer() {
+        pDialog=  KProgressHUD.create(FeedBack_Activity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Feedback Sending.....")
+                .setCancellable(false)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+                 showpDialog();
+
+        String sendFeedback = feedback.getText().toString();
+        APIService service = ApiClient.getClient().create(APIService.class);
+
+        Call<MSG> feedbacks = service.feedback(id,Rating,sendFeedback);
+      feedbacks.enqueue(new Callback<MSG>() {
+    @Override
+    public void onResponse(Call<MSG> call, Response<MSG> response) {
+        if (response.isSuccessful()){
+
+            Toast.makeText(FeedBack_Activity.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onFailure(Call<MSG> call, Throwable t) {
+        Toast.makeText(FeedBack_Activity.this, ""+t.toString(), Toast.LENGTH_SHORT).show();
+    }
+});
+    }
+
+        private void showpDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
     }
@@ -174,6 +176,43 @@ public class FeedBack_Activity extends AppCompatActivity {
     private void hidepDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_Feedback) {
+            if (resultCode == RESULT_OK) {
+
+                // TODO: Implement successful signup logic here
+                // By default we just finish the Activity and log them in automatically
+                this.finish();
+            }
+        }
+    }
+    public void onLoginFailed() {
+        Toast.makeText(getBaseContext(), "Please fill all requirements", Toast.LENGTH_LONG).show();
+
+        btnSend.setEnabled(true);
+    }
+    public boolean validate() {
+        boolean valid = true;
+
+        String feedbackSend= feedback.getText().toString();
+
+        if (feedbackSend.isEmpty() ) {
+            feedback.setError("Please enter feedback ");
+            requestFocus(feedback);
+            valid = false;
+        } else {
+            feedback.setError(null);
+        }
+        return valid;
+    }
+
+    private void requestFocus(View view) {
+        if (view.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
 

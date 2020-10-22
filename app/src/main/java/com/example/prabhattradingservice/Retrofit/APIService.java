@@ -39,5 +39,12 @@ public interface APIService {
     @POST("forget-password")
     Call<MSG> forgetPassword(@Field("email") String email);
 
+    @FormUrlEncoded
+    @POST("feedback")
+    Call<MSG> feedback(@Field("user_id") String id,
+                       @Field("rating") String rating,
+                       @Field("feedback") String feedback);
+
+
 
 }

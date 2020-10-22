@@ -98,15 +98,15 @@ public class QueryForm extends AppCompatActivity {
     }
 
     private void loginByServer() {
-        pDialog = KProgressHUD.create(getApplicationContext())
+     /*   pDialog = KProgressHUD.create(getApplicationContext())
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Sending........")
                 .setCancellable(false)
                 .setAnimationSpeed(2)
                 .setDimAmount(0.5f)
                 .show();
-
-      showpDialog();
+*/
+    //  showpDialog();
 
 
         String name = username.getText().toString();
