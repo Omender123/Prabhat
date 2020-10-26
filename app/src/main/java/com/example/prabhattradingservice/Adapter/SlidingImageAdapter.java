@@ -11,17 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.prabhattradingservice.Model.ImageSilderModel;
 import com.example.prabhattradingservice.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class SlidingImageAdapter extends PagerAdapter {
-  private ArrayList<Integer>Images;
+  private ArrayList<ImageSilderModel>Images;
   private LayoutInflater layoutInflater;
   private Context context;
 
-    public SlidingImageAdapter(ArrayList<Integer> images, Context context) {
-        Images = images;
+    public SlidingImageAdapter(ArrayList<ImageSilderModel> images, Context context) {
+        this.Images = images;
         this.context = context;
         layoutInflater= LayoutInflater.from(context);
     }
@@ -49,7 +51,8 @@ public class SlidingImageAdapter extends PagerAdapter {
    assert view !=null;
     final ImageView imageView=(ImageView) view.findViewById(R.id.image);
 
-    imageView.setImageResource(Images.get(position));
+  //  imageView.setImageResource(Images.get(position));
+        Picasso.get().load(Images.get(position).getImageurl()).into(imageView);
     container.addView(view,0);
     return view;
     }

@@ -77,12 +77,12 @@ public class Registration_Activity extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-      //signup();
+      signup();
 
-                Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+              /*  Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                 startActivity(i);
                 finish();
-
+*/
             }
         });
 

@@ -1,10 +1,9 @@
 package com.example.prabhattradingservice.Fragments;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,28 +17,34 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
 import com.example.prabhattradingservice.Adapter.YoutubeImageAdapter;
-import com.example.prabhattradingservice.Adapter.YoutubeRecyclerAdapter;
 import com.example.prabhattradingservice.CourseScreen.OfflineCourse;
 import com.example.prabhattradingservice.CourseScreen.OnlineCourse;
+import com.example.prabhattradingservice.Model.ImageSilderModel;
+import com.example.prabhattradingservice.Model.YouTubeModal;
 import com.example.prabhattradingservice.Model.YoutubeImagesModel;
-import com.example.prabhattradingservice.Model.YoutubeVideo;
 import com.example.prabhattradingservice.R;
 import com.viewpagerindicator.CirclePageIndicator;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class Home_Fragment extends Fragment {
 
@@ -50,14 +55,15 @@ public class Home_Fragment extends Fragment {
     CirclePageIndicator indicator;
     private static int currentPage=0;
     private static int No_page=0;
-     private ArrayList<Integer> ImageArray=new ArrayList<Integer>();
-
-  /*  @BindView(R.id.recyclerViewFeed)*/
+    ImageSilderModel ImageSilderModels;
+    ArrayList<ImageSilderModel>Image=new ArrayList<>();
+    ArrayList<YouTubeModal>youTubeModals;
     RecyclerView recyclerViewPrice,recyclerViewIndicator,recyclerViewPositional;
-
+         RequestQueue requestQueue;
     YoutubeImageAdapter mRecyclerAdapter;
     ImageView online,offline;
 
+    TextView priceSeeAll,IndicatorSeeAll,positonalSeeAll;
 
     public Home_Fragment() {
         // Required empty public constructor
@@ -71,14 +77,54 @@ public class Home_Fragment extends Fragment {
        online=view.findViewById(R.id.online);
         offline=view.findViewById(R.id.offline);
         webView=view.findViewById(R.id.marqueeWebView);
+
         String url="file:///android_asset/marquee.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
 
 
+       /* requestQueue= Volley.newRequestQueue(getContext());
+*/
+        positonalSeeAll=view.findViewById(R.id.positionalSeeAll);
+        positonalSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),PositionalSeeall.class));
+            }
+        });
+
+
+        priceSeeAll=view.findViewById(R.id.priceSeeAll);
+        priceSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),PriceSeeAll.class));
+            }
+        });
+
+
+
+        IndicatorSeeAll=view.findViewById(R.id.INDICATORSeeAll);
+        IndicatorSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),IndicatorSeeAll.class));
+            }
+        });
+
+        priceSeeAll  =view.findViewById(R.id.priceSeeAll);
+        priceSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(),PriceSeeAll.class));
+            }
+        });
+
+          youTubeModals=new ArrayList<YouTubeModal>();
                 recyclerViewPrice=view.findViewById(R.id.recyclerViewPrice);
                 recyclerViewIndicator=view.findViewById(R.id.recyclerViewIndicator);
                 recyclerViewPositional=view.findViewById(R.id.recyclerViewPositional);
+
         PriceActionStrategy();
         IndicatorBasedStrategy();
         PositionalStocks();
@@ -88,26 +134,54 @@ public class Home_Fragment extends Fragment {
         // image slider
         mpage=view.findViewById(R.id.pager);
         indicator = (CirclePageIndicator)view.findViewById(R.id.indicator);
+
        init();
 
   return view;  }
 
     private void init() {
-          final Integer[] Images={R.mipmap.first,R.mipmap.second,R.mipmap.thrid,R.mipmap.forth};
-        for (int i = 0; i < Images.length; i++) {
-            ImageArray.add(Images[i]);
-        }
-        mpage.setAdapter(new SlidingImageAdapter(ImageArray, getContext()));
-        indicator.setViewPager(mpage);
+        String url="https://prabhattrading.com/apis/banner";
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
 
 
-        /*iconPageIndicator=getActivity().findViewById(R.id.indiactor);
-        iconPageIndicator.setViewPager(mpage);
-*/
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("data");
+                    for (int i=0;i<=jsonArray.length();i++)
+                    {
+                        ImageSilderModels=new ImageSilderModel();
+                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                        final String image=jsonObject1.getString("banner_img");
+                        ImageSilderModels.setImageurl(image);
+
+                        Image.add(ImageSilderModels);
+
+                        mpage.setAdapter(new SlidingImageAdapter(Image,getContext()));
+                        indicator.setViewPager(mpage);
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(stringRequest);
+
         final float density = getResources().getDisplayMetrics().density;
         //Set circle indicator radius
         indicator.setRadius(5 * density);
-        No_page = Images.length;
+        No_page = Image.size();
         // Auto start of viewpager
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -124,7 +198,7 @@ public class Home_Fragment extends Fragment {
             public void run() {
                 handler.post(Update);
             }
-        }, 2000, 2000);
+        }, 3000, 3000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -149,85 +223,136 @@ public class Home_Fragment extends Fragment {
     }
 
     public void PriceActionStrategy(){
+      String url="http://prabhattrading.com/apis/PRICE-ACTION-STRATEGY ";
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String data=jsonObject.getString("data");
 
-        // You tube video
-        ButterKnife.bind((Activity) getContext());
-        // prepare data for list
-        List<YoutubeImagesModel> youtubeVideos = prepareList();
-        mRecyclerAdapter = new YoutubeImageAdapter(youtubeVideos,getContext());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewPrice.setLayoutManager(mLayoutManager);
-        recyclerViewPrice.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewPrice.setAdapter(mRecyclerAdapter);
+                    JSONArray jsonArray=new JSONArray(data);
+                    for (int i=0; i<=jsonArray.length();i++){
+                        YouTubeModal modalData=new YouTubeModal();
+                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                        String image=jsonObject1.getString("image");
+                        String video=jsonObject1.getString("video_link");
+                        modalData.setYoutubeImage(image);
+                        modalData.setYoutubeVideo(video);
+                        youTubeModals.add(modalData);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mRecyclerAdapter = new YoutubeImageAdapter(youTubeModals,getContext());
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+                recyclerViewPrice.setLayoutManager(mLayoutManager);
+                recyclerViewPrice.setItemAnimator(new DefaultItemAnimator());
+                recyclerViewPrice.setAdapter(mRecyclerAdapter);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+         requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
 
     }
 
     public void IndicatorBasedStrategy(){
-// You tube video
-        ButterKnife.bind((Activity) getContext());
-        // prepare data for list
-        List<YoutubeImagesModel> youtubeVideos = prepareList();
-        mRecyclerAdapter = new YoutubeImageAdapter(youtubeVideos,getContext());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewIndicator.setLayoutManager(mLayoutManager);
-        recyclerViewIndicator.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewIndicator.setAdapter(mRecyclerAdapter);
+
+        String url="http://prabhattrading.com/apis/INDICATOR-BASED-STRATEGY";
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //  Toast.makeText(getActivity(), response+"", Toast.LENGTH_SHORT).show();
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String data=jsonObject.getString("data");
+
+                    JSONArray jsonArray=new JSONArray(data);
+                    for (int i=0; i<=jsonArray.length();i++){
+                        YouTubeModal modalData=new YouTubeModal();
+                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                        String image=jsonObject1.getString("image");
+                         modalData.setYoutubeImage(image);
+                        youTubeModals.add(modalData);
+                        //Toast.makeText(getApplicationContext(), ""+jsonArray, Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                mRecyclerAdapter = new YoutubeImageAdapter(youTubeModals,getContext());
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+                recyclerViewIndicator.setLayoutManager(mLayoutManager);
+                recyclerViewIndicator.setItemAnimator(new DefaultItemAnimator());
+                recyclerViewIndicator.setAdapter(mRecyclerAdapter);
+         }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(stringRequest);
 
     }
 
     public void PositionalStocks(){
-// You tube video
-        ButterKnife.bind((Activity) getContext());
-        // prepare data for list
-        List<YoutubeImagesModel> youtubeVideos = prepareList();
-        mRecyclerAdapter = new YoutubeImageAdapter(youtubeVideos,getContext());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewPositional.setLayoutManager(mLayoutManager);
-        recyclerViewPositional.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewPositional.setAdapter(mRecyclerAdapter);
 
-    }
-    private List<YoutubeImagesModel> prepareList() {
-        ArrayList mYoutubeVideo = new ArrayList();
-        // add first item
-        YoutubeImagesModel video1 = new YoutubeImagesModel();
-        video1.setImageUrl("http://prabhattrading.com/apis/image/firstss.jpeg");
-      //  video1.setImageUrl("https://i.ytimg.com/vi/rfbw6BymkxA/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAu0AVNi9tgj0roTOkddpJ34OSZ4w");
-       // video1.setTitle("Thugs Of Hindostan - Official Trailer | Amitabh Bachchan | Aamir Khan | Katrina Kaif | Fatima");
-        mYoutubeVideo.add(video1);
+        String url="http://prabhattrading.com/apis/POSITIONAL-STOCKS";
+        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //  Toast.makeText(getActivity(), response+"", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String data=jsonObject.getString("data");
 
-        // add second item
-        YoutubeImagesModel video2 = new YoutubeImagesModel();
-        video2.setImageUrl("https://i.ytimg.com/vi/y8bELQD3zy0/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDQ8uZDoOsHkIoQg3WI89yYkVCH-g");
-       // video2.setTitle("Colors for Children to Learning with Baby Fun Play with Color Balls Dolphin Slider Toy Set Kids Edu");
-         mYoutubeVideo.add(video2);
+                    JSONArray jsonArray=new JSONArray(data);
+                    for (int i=0; i<=jsonArray.length();i++){
+                        YouTubeModal modalData=new YouTubeModal();
+                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                        String image=jsonObject1.getString("image");
+                        //   String id=jsonObject1.getString("id");
+                        //    modalData.setProduct_name(id);
+                        modalData.setYoutubeImage(image);
+                        youTubeModals.add(modalData);
+                        //Toast.makeText(getApplicationContext(), ""+jsonArray, Toast.LENGTH_SHORT).show();
+                    }
 
-        // add third item
-        YoutubeImagesModel video3 = new YoutubeImagesModel();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-        video3.setImageUrl("https://i.ytimg.com/vi/zLw58dVq5VI/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAILJhFbYqGoqXWsP41lun99Z9HpA");
-       // video3.setTitle("Air Hostess Accepts Marriage Proposal Mid-Air, Airline Fires her.");
-        mYoutubeVideo.add(video3);
+            mRecyclerAdapter = new YoutubeImageAdapter(youTubeModals,getContext());
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+                recyclerViewPositional.setLayoutManager(mLayoutManager);
+                recyclerViewPositional.setItemAnimator(new DefaultItemAnimator());
+                recyclerViewPositional.setAdapter(mRecyclerAdapter);
+        }
 
-        // add four item
-        YoutubeImagesModel video4 = new YoutubeImagesModel();
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(stringRequest);
 
-        video4.setImageUrl("https://i.ytimg.com/vi/07CKQzaI3F8/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCBnMtEEcuk8Ada3rh0VyKEfYYs4g");
-        mYoutubeVideo.add(video4);
-      //  video4.setTitle("EXPERIMENT Glowing 1000 degree METAL BALL vs Gunpowder (100 grams)");
 
-
-
-
-      /*  mYoutubeVideo.add(video1);
-        mYoutubeVideo.add(video2);
-        mYoutubeVideo.add(video3);
-        mYoutubeVideo.add(video4);
-       */ return mYoutubeVideo;
     }
 
     public void Course(){
-
         online.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

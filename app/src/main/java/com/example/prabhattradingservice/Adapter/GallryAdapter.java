@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.prabhattradingservice.ClickListener.GalleryClickListner;
 import com.example.prabhattradingservice.Model.GalleryModalData;
 import com.example.prabhattradingservice.R;
 import com.squareup.picasso.Picasso;
@@ -18,11 +19,12 @@ import java.util.ArrayList;
 
 public class GallryAdapter extends RecyclerView.Adapter<GallryAdapter.MyHolder> {
     ArrayList<GalleryModalData>galleryModalData;
-  public   Context context;
 
-    public GallryAdapter(ArrayList<GalleryModalData> galleryModalData, Context context) {
+  private GalleryClickListner galleryClickListner;
+
+    public GallryAdapter(ArrayList<GalleryModalData> galleryModalData,GalleryClickListner galleryClickListner) {
         this.galleryModalData = galleryModalData;
-        this.context=context;
+        this.galleryClickListner=galleryClickListner;
     }
 
     @NonNull
@@ -50,6 +52,13 @@ public class GallryAdapter extends RecyclerView.Adapter<GallryAdapter.MyHolder> 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             imageView=itemView.findViewById(R.id.Gallery_image);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    galleryClickListner.onItemClickListener(getAdapterPosition());
+                }
+            });
 
         }
     }

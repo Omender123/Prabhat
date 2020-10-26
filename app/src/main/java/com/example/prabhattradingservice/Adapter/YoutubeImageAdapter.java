@@ -8,23 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.prabhattradingservice.Model.YouTubeModal;
 import com.example.prabhattradingservice.Model.YoutubeImagesModel;
 import com.example.prabhattradingservice.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class YoutubeImageAdapter extends RecyclerView.Adapter<YoutubeImageAdapter.MyViewHolder> {
-List<YoutubeImagesModel> youtubeVideoModels;
+List<YouTubeModal> youtubeVideoModels;
 Context context;
 DisplayMetrics displayMetrics = new DisplayMetrics();
 
-    public YoutubeImageAdapter(List<YoutubeImagesModel> youtubeVideoModels, Context context) {
+    public YoutubeImageAdapter(List<YouTubeModal> youtubeVideoModels, Context context) {
         this.youtubeVideoModels = youtubeVideoModels;
         this.context = context;
     }
@@ -42,7 +45,17 @@ DisplayMetrics displayMetrics = new DisplayMetrics();
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.onBind(position);
+
+        Picasso.get().load(youtubeVideoModels.get(position).getYoutubeImage()).into(holder.videoImage);
+        holder.videoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               // Toast.makeText(context, ""+youtubeVideoModels.get(position).getYoutubeImage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    //    holder.onBind(position);
     }
 
     @Override
@@ -59,7 +72,7 @@ DisplayMetrics displayMetrics = new DisplayMetrics();
 
         }
 
-        public void onBind(final int position) {
+      /*  public void onBind(final int position) {
             final YoutubeImagesModel mYoutubeVideo = youtubeVideoModels.get(position);
             ((Activity) itemView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             int width = displayMetrics.widthPixels;
@@ -71,7 +84,7 @@ DisplayMetrics displayMetrics = new DisplayMetrics();
                         .into(videoImage);
             }
 
-         /*   playButton.setOnClickListener(new View.OnClickListener() {
+         *//*   playButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context,Fullscreen.class);
@@ -79,10 +92,10 @@ DisplayMetrics displayMetrics = new DisplayMetrics();
                     context.startActivity(intent);
 
                 }
-            });*/
+            });*//*
 
              }
-
+*/
 
         }
     }

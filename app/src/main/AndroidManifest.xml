@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prabhattradingservice" >
+    package="com.example.prabhattradingservice">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,11 +14,26 @@
         android:roundIcon="@mipmap/application_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
-        <activity android:name=".ProfileActivty"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Fragments.PositionalSeeall"></activity>
+        <activity android:name=".Fragments.PositionalWebView"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            >
-        </activity>
+            />
+        <activity android:name=".Fragments.IndicatorWebView"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".Fragments.IndicatorSeeAll"
+            />
+        <activity
+            android:name=".Fragments.PriceWebView"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Fragments.PriceSeeAll" />
+        <activity
+            android:name=".ProfileActivty"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CourseScreen.OfflineCourse" />
         <activity android:name=".CourseScreen.OnlineCourse" />
         <activity
@@ -63,7 +78,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Splash_Screen"
-            android:theme="@style/AppTheme.NoActionBar1" >
+            android:theme="@style/AppTheme.NoActionBar1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
