@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.prabhattradingservice.Fragments.PriceWebView;
 import com.example.prabhattradingservice.Model.YouTubeModal;
 import com.example.prabhattradingservice.Model.YoutubeImagesModel;
 import com.example.prabhattradingservice.R;
@@ -50,8 +51,11 @@ DisplayMetrics displayMetrics = new DisplayMetrics();
         holder.videoImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-               // Toast.makeText(context, ""+youtubeVideoModels.get(position).getYoutubeImage(), Toast.LENGTH_SHORT).show();
+                 Intent intent=new Intent(context, PriceWebView.class);
+                 String price= youtubeVideoModels.get(position).getYoutubeVideo();
+                 intent.putExtra("price",""+price);
+                 context.startActivity(intent);
+             //  Toast.makeText(context, ""+youtubeVideoModels.get(position).getYoutubeVideo(), Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -65,25 +65,28 @@ public class Registration_Activity extends AppCompatActivity {
             startActivity(new Intent(this,MainActivity.class));
             return;
         }
+
         SignUp = findViewById(R.id.btnSignUp);
-        //if the user is already logged in we will directly start the profile activity
-      /*  if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+
+      /*  //if the user is already logged in we will directly start the profile activity
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
             startActivity(new Intent(this, Home_Fragment.class));
             return;
-        }*/
-
+        }
+*/
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-      signup();
+     signup();
 
-              /*  Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+            /*  Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                 startActivity(i);
                 finish();
-*/
-            }
+
+            */}
         });
 
     }
@@ -205,10 +208,6 @@ public class Registration_Activity extends AppCompatActivity {
                         );
 
 
-                    Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
-                    startActivity(i);
-                    finish();
-                    Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
 
                     //storing the user in shared preferences
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
@@ -216,9 +215,16 @@ public class Registration_Activity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getBaseContext(), "All ready Registered", Toast.LENGTH_LONG).show();
+
                    // Toast.makeText(Registration_Activity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
                 }
+
+                Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
+
+
             }
 
         }, new Response.ErrorListener() {

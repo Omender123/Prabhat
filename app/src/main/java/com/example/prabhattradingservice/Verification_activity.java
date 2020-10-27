@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -29,7 +30,6 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Verification_activity extends AppCompatActivity {
  private EditText otp;
@@ -96,7 +96,7 @@ Button verify;
     }
 
     private void saveToServerDB() {
-       /* progressDialog=  KProgressHUD.create(Verification_activity.this)
+     progressDialog=  KProgressHUD.create(Verification_activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setBackgroundColor(R.color.grey_light_secondary)
                 .setLabel("Please Checking.....")
@@ -111,7 +111,47 @@ Button verify;
         String url ="http://prabhattrading.com/apis/otp";
         String code = otp.getText().toString();
 
-        StringRequest stringRequest =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                hidepDialog();
+                Intent i = new Intent( Verification_activity.this,MainActivity.class);
+                startActivity(i);
+                finish();
+                Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidepDialog();
+                Toast.makeText(Verification_activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("otp",code);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+
+                // headers.put("Authorization", "Bearer "+Token);
+
+                return headers;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(stringRequest);
+
+    /*    StringRequest stringRequest =new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 hidepDialog();
@@ -121,7 +161,7 @@ Button verify;
                   finish();
                   Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();
               }else {
-                  Toast.makeText(Verification_activity.this, "Please enter right otp"*//*+error.toString()*//*, Toast.LENGTH_SHORT).show();
+                  Toast.makeText(Verification_activity.this, "Please enter right otp", Toast.LENGTH_SHORT).show();
               }
             }
         }, new Response.ErrorListener() {
@@ -152,9 +192,9 @@ Button verify;
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
-     */
+*/
 
-      progressDialog=  KProgressHUD.create(Verification_activity.this)
+     /* progressDialog=  KProgressHUD.create(Verification_activity.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setBackgroundColor(R.color.grey_light_secondary)
                 .setLabel("Please Checking.....")
@@ -199,7 +239,7 @@ Button verify;
 
             }
         });
-    }
+    */}
 
     private void showpDialog() {
         if (!progressDialog.isShowing())

@@ -15,17 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Fragments.PositionalSeeall"></activity>
-        <activity android:name=".Fragments.PositionalWebView"
+        <activity android:name=".BlogsSeeAll"></activity>
+        <activity android:name=".Fragments.PositionalSeeall" />
+        <activity
+            android:name=".Fragments.PositionalWebView"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".Fragments.IndicatorWebView"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Fragments.IndicatorWebView"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".Fragments.IndicatorSeeAll"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Fragments.IndicatorSeeAll" />
         <activity
             android:name=".Fragments.PriceWebView"
             android:screenOrientation="landscape"

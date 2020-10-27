@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prabhattradingservice.Fragments.Home_Fragment;
 import com.example.prabhattradingservice.Model.MSG;
 import com.example.prabhattradingservice.Model.User;
 import com.example.prabhattradingservice.R;
@@ -62,14 +63,20 @@ public class Login_Activity extends AppCompatActivity {
         _loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-         login();
-              /* Intent i = new Intent(Login_Activity.this, MainActivity.class);
+        login();
+          /*   Intent i = new Intent(Login_Activity.this, MainActivity.class);
                 startActivity(i);
                 finish();
 */
             }
         });
+            //if the user is already logged in we will directly start the profile activity
 
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

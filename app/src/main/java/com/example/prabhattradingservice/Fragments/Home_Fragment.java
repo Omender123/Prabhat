@@ -27,11 +27,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.prabhattradingservice.Adapter.IndcatorAdapter;
+import com.example.prabhattradingservice.Adapter.PositionalAdapter;
 import com.example.prabhattradingservice.Adapter.SlidingImageAdapter;
 import com.example.prabhattradingservice.Adapter.YoutubeImageAdapter;
 import com.example.prabhattradingservice.CourseScreen.OfflineCourse;
 import com.example.prabhattradingservice.CourseScreen.OnlineCourse;
 import com.example.prabhattradingservice.Model.ImageSilderModel;
+import com.example.prabhattradingservice.Model.IndicatorModal;
+import com.example.prabhattradingservice.Model.PositionalModal;
 import com.example.prabhattradingservice.Model.YouTubeModal;
 import com.example.prabhattradingservice.Model.YoutubeImagesModel;
 import com.example.prabhattradingservice.R;
@@ -58,13 +62,20 @@ public class Home_Fragment extends Fragment {
     ImageSilderModel ImageSilderModels;
     ArrayList<ImageSilderModel>Image=new ArrayList<>();
     ArrayList<YouTubeModal>youTubeModals;
+
     RecyclerView recyclerViewPrice,recyclerViewIndicator,recyclerViewPositional;
-         RequestQueue requestQueue;
+    RequestQueue requestQueue;
     YoutubeImageAdapter mRecyclerAdapter;
     ImageView online,offline;
 
     TextView priceSeeAll,IndicatorSeeAll,positonalSeeAll;
 
+// Indicator Video
+    ArrayList<IndicatorModal>indicatorModals=new ArrayList<>();
+    IndcatorAdapter indcatorAdapter;
+// Positional Video
+ ArrayList<PositionalModal>positionalModals;
+ PositionalAdapter positionalAdapter;
     public Home_Fragment() {
         // Required empty public constructor
     }
@@ -82,7 +93,7 @@ public class Home_Fragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
 
-
+            positionalModals=new ArrayList<PositionalModal>();
        /* requestQueue= Volley.newRequestQueue(getContext());
 */
         positonalSeeAll=view.findViewById(R.id.positionalSeeAll);
@@ -120,14 +131,14 @@ public class Home_Fragment extends Fragment {
             }
         });
 
-          youTubeModals=new ArrayList<YouTubeModal>();
+                youTubeModals=new ArrayList<YouTubeModal>();
                 recyclerViewPrice=view.findViewById(R.id.recyclerViewPrice);
                 recyclerViewIndicator=view.findViewById(R.id.recyclerViewIndicator);
                 recyclerViewPositional=view.findViewById(R.id.recyclerViewPositional);
 
         PriceActionStrategy();
-        IndicatorBasedStrategy();
-        PositionalStocks();
+       IndicatorBasedStrategy();
+       PositionalStocks();
         Course();
 
 
@@ -278,11 +289,15 @@ public class Home_Fragment extends Fragment {
 
                     JSONArray jsonArray=new JSONArray(data);
                     for (int i=0; i<=jsonArray.length();i++){
-                        YouTubeModal modalData=new YouTubeModal();
+                        IndicatorModal modalData=new IndicatorModal();
                         JSONObject jsonObject1=jsonArray.getJSONObject(i);
                         String image=jsonObject1.getString("image");
-                         modalData.setYoutubeImage(image);
-                        youTubeModals.add(modalData);
+                        String video=jsonObject1.getString("video_link");
+
+                         modalData.setIndicatorImage(image);
+                        modalData.setIndicatorVideo(video);
+
+                        indicatorModals.add(modalData);
                         //Toast.makeText(getApplicationContext(), ""+jsonArray, Toast.LENGTH_SHORT).show();
                     }
 
@@ -290,11 +305,11 @@ public class Home_Fragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                mRecyclerAdapter = new YoutubeImageAdapter(youTubeModals,getContext());
+               indcatorAdapter = new IndcatorAdapter(indicatorModals,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
                 recyclerViewIndicator.setLayoutManager(mLayoutManager);
                 recyclerViewIndicator.setItemAnimator(new DefaultItemAnimator());
-                recyclerViewIndicator.setAdapter(mRecyclerAdapter);
+                recyclerViewIndicator.setAdapter(indcatorAdapter);
          }
 
         }, new Response.ErrorListener() {
@@ -303,11 +318,13 @@ public class Home_Fragment extends Fragment {
                 Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
 
     }
 
     public void PositionalStocks(){
+
 
         String url="http://prabhattrading.com/apis/POSITIONAL-STOCKS";
         StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -320,25 +337,26 @@ public class Home_Fragment extends Fragment {
 
                     JSONArray jsonArray=new JSONArray(data);
                     for (int i=0; i<=jsonArray.length();i++){
-                        YouTubeModal modalData=new YouTubeModal();
+                        PositionalModal modalData=new PositionalModal();
                         JSONObject jsonObject1=jsonArray.getJSONObject(i);
                         String image=jsonObject1.getString("image");
-                        //   String id=jsonObject1.getString("id");
-                        //    modalData.setProduct_name(id);
-                        modalData.setYoutubeImage(image);
-                        youTubeModals.add(modalData);
-                        //Toast.makeText(getApplicationContext(), ""+jsonArray, Toast.LENGTH_SHORT).show();
+                        String video=jsonObject1.getString("video_link");
+                      /*  String id =jsonObject1.getString("id");
+                        modalData.setId(id);
+                      */  modalData.setPositionalVideo(video);
+                        modalData.setPositionalImage(image);
+                        positionalModals.add(modalData);
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-            mRecyclerAdapter = new YoutubeImageAdapter(youTubeModals,getContext());
+                positionalAdapter = new PositionalAdapter(positionalModals,getContext());
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
                 recyclerViewPositional.setLayoutManager(mLayoutManager);
                 recyclerViewPositional.setItemAnimator(new DefaultItemAnimator());
-                recyclerViewPositional.setAdapter(mRecyclerAdapter);
+                recyclerViewPositional.setAdapter(positionalAdapter);
         }
 
         }, new Response.ErrorListener() {
@@ -347,6 +365,7 @@ public class Home_Fragment extends Fragment {
                 Toast.makeText(getContext(), ""+error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
 
 
