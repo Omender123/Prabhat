@@ -115,7 +115,7 @@ Button verify;
             @Override
             public void onResponse(String response) {
                 hidepDialog();
-                Intent i = new Intent( Verification_activity.this,MainActivity.class);
+                Intent i = new Intent( Verification_activity.this,Login_Activity.class);
                 startActivity(i);
                 finish();
                 Toast.makeText(getBaseContext(), "Registration Complete ", Toast.LENGTH_LONG).show();

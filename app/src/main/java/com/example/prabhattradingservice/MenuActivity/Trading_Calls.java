@@ -1,17 +1,30 @@
 package com.example.prabhattradingservice.MenuActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.prabhattradingservice.Adapter.PageAdapter;
 import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.R;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
 public class Trading_Calls extends AppCompatActivity {
     ImageView iv_back;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    PageAdapter pageAdapter;
+    TabItem tabIntraday;
+    TabItem tabSwing;
+    TabItem tabLong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +41,62 @@ public class Trading_Calls extends AppCompatActivity {
             }
         });
 
+        tabLayout = findViewById(R.id.tablayout1);
+        tabIntraday = findViewById(R.id.Intraday);
+        tabSwing = findViewById(R.id.Swing);
+        tabLong= findViewById(R.id.long_term);
+        viewPager = findViewById(R.id.viewPager1);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 1) {
+                  /*  tabLayout.setBackgroundColor(ContextCompat.getColor(Trading_Calls.this,
+                            R.color.colorAccent));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(Trading_Calls.this,
+                                R.color.colorAccent));
+                    }
+          */      } else if (tab.getPosition() == 2) {
+                  /* toolbar.setBackgroundColor(ContextCompat.getColor(Trading_Calls.this,
+                            android.R.color.darker_gray));
+                  tabLayout.setBackgroundColor(ContextCompat.getColor(Trading_Calls.this,
+                            android.R.color.darker_gray));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(Trading_Calls.this,
+                                android.R.color.darker_gray));
+                    }
+              */  } else {
+                  /* toolbar.setBackgroundColor(ContextCompat.getColor(MainActivity.this,
+                            R.color.colorPrimary));
+                   tabLayout.setBackgroundColor(ContextCompat.getColor(Trading_Calls.this,
+                            R.color.colorPrimary));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setStatusBarColor(ContextCompat.getColor(Trading_Calls.this,
+                                R.color.colorPrimaryDark));
+                    }*/
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
+
 
    /* // Action bar change tittle
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

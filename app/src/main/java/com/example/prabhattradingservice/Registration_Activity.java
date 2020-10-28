@@ -41,7 +41,7 @@ public class Registration_Activity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     Button SignUp;
      KProgressHUD progressDialog;
-     String url="http://prabhattrading.com/API/signup";
+     String url="http://prabhattrading.com/apis/signup";
     RequestQueue requestQueue;
 
     public Registration_Activity() {
@@ -185,11 +185,11 @@ public class Registration_Activity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
-        final String mobile = _mobileText.getText().toString();
+        String mobile = _mobileText.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
 
-        StringRequest request=new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+        StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 hidepDialog();
@@ -206,10 +206,7 @@ public class Registration_Activity extends AppCompatActivity {
                                 userJson.getString("email"),
                                 userJson.getString("gender")
                         );
-
-
-
-                    //storing the user in shared preferences
+                        //storing the user in shared preferences
                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
 
@@ -218,16 +215,13 @@ public class Registration_Activity extends AppCompatActivity {
 
                    // Toast.makeText(Registration_Activity.this, ""+e.toString(), Toast.LENGTH_SHORT).show();
                 }
-
-                Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
+             Intent i = new Intent(Registration_Activity.this, Verification_activity.class);
                 startActivity(i);
                 finish();
                 Toast.makeText(getBaseContext(), "Otp Send in your Email Account ", Toast.LENGTH_LONG).show();
+          }
 
-
-            }
-
-        }, new Response.ErrorListener() {
+            }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 hidepDialog();
@@ -236,7 +230,6 @@ public class Registration_Activity extends AppCompatActivity {
                 //Toast.makeText(Registration_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
