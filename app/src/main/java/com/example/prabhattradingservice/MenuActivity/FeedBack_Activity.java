@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -32,12 +33,14 @@ import com.example.prabhattradingservice.SharedPrefernce.SharedPrefManager;
 import com.example.prabhattradingservice.SharedPrefernce.UserData;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FeedBack_Activity extends AppCompatActivity {
     Animation animation;
@@ -61,10 +64,8 @@ public class FeedBack_Activity extends AppCompatActivity {
         rbStars = findViewById(R.id.rbStars);
         btnSend=findViewById(R.id.btnSend);
         requestQueue= Volley.newRequestQueue(this);
+
         UserData user = SharedPrefManager.getInstance(this).getUser();
-
-
-
         id=String.valueOf(user.getId());
 
         rbStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -119,8 +120,51 @@ public class FeedBack_Activity extends AppCompatActivity {
           animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animation);
           btnSend.startAnimation(animation);
 
+          feedback();
+        /*  String sendFeedback = feedback.getText().toString();
 
-          }
+          //Toast.makeText(FeedBack_Activity.this, ""+id+Rating+sendFeedback, Toast.LENGTH_SHORT).show();
+
+          String url="http://prabhattrading.com/apis/feedback";
+
+          StringRequest request=new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
+                 // hidepDialog();
+                  Toast.makeText(FeedBack_Activity.this, ""+response, Toast.LENGTH_SHORT).show();
+              }
+              }, new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                  hidepDialog();
+                  Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_LONG).show();
+                  // Toast.makeText(Login_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+              }
+          }){
+
+              @Override
+              protected Map<String, String> getParams() throws AuthFailureError {
+                  Map<String, String> params = new HashMap<>();
+                  params.put("user_id", id);
+                  params.put("rating", Rating);
+                  params.put("feedback",sendFeedback);
+                  return params;
+              }
+
+              @Override
+              public Map<String, String> getHeaders() throws AuthFailureError {
+                  Map<String, String> headers = new HashMap<String, String>();
+
+                  // headers.put("Authorization", "Bearer "+Token);
+
+                  return headers;
+              }
+          };
+
+          RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+          queue.add(request);
+     */ }
+
   });
 
     }
@@ -149,23 +193,50 @@ public class FeedBack_Activity extends AppCompatActivity {
                  showpDialog();
 
         String sendFeedback = feedback.getText().toString();
-        APIService service = ApiClient.getClient().create(APIService.class);
 
-        Call<MSG> feedbacks = service.feedback(id,Rating,sendFeedback);
-      feedbacks.enqueue(new Callback<MSG>() {
-    @Override
-    public void onResponse(Call<MSG> call, Response<MSG> response) {
-        if (response.isSuccessful()){
+        //Toast.makeText(FeedBack_Activity.this, ""+id+Rating+sendFeedback, Toast.LENGTH_SHORT).show();
 
-            Toast.makeText(FeedBack_Activity.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
-        }
-    }
+        String url="http://prabhattrading.com/apis/feedback";
 
-    @Override
-    public void onFailure(Call<MSG> call, Throwable t) {
-        Toast.makeText(FeedBack_Activity.this, ""+t.toString(), Toast.LENGTH_SHORT).show();
-    }
-});
+        StringRequest request=new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+             hidepDialog();
+               startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                Toast.makeText(FeedBack_Activity.this, " FeedBack Successfully Send" +response, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(FeedBack_Activity.this, ""+response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                hidepDialog();
+                Toast.makeText(getApplicationContext(), " Feedback All Ready Send", Toast.LENGTH_LONG).show();
+                // Toast.makeText(Login_Activity.this, ""+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", id);
+                params.put("rating", Rating);
+                params.put("feedback",sendFeedback);
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<String, String>();
+
+                // headers.put("Authorization", "Bearer "+Token);
+
+                return headers;
+            }
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        queue.add(request);
+
     }
 
         private void showpDialog() {

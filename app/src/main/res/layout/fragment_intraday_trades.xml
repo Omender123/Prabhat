@@ -8,7 +8,8 @@
 
     <!-- TODO: Update blank fragment layout -->
    <androidx.recyclerview.widget.RecyclerView
-       android:background="@color/grey"
+       android:id="@+id/intradayRecyclerView"
+       android:background="#F4F4F4"
        android:layout_width="match_parent"
        android:layout_height="match_parent"/>
 

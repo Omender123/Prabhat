@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="3dp"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         android:orientation="vertical">
   <RelativeLayout
         android:layout_marginTop="3dp"
@@ -142,14 +142,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-
+            android:layout_marginBottom="2dp"
             >
             <ImageView
                 android:id="@+id/course"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-
+                android:padding="@dimen/space5"
                 android:src="@drawable/ic_course"/>
 
             <TextView
@@ -157,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/course"
+                android:padding="@dimen/space5"
                 android:text="COURSE "
                 android:textColor="#000"
                 android:textSize="15dp" />
@@ -166,6 +167,8 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:layout_marginRight="@dimen/space5"
+           android:layout_marginLeft="@dimen/space5"
            android:orientation="vertical">
 
 
@@ -173,16 +176,17 @@
                 android:id="@+id/online"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/onlines" />
+                android:layout_marginTop="@dimen/space5"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/online_icon" />
 
             <ImageView
                 android:id="@+id/offline"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="5dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/offlines"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/offline_icon"
               />
        </LinearLayout>
 

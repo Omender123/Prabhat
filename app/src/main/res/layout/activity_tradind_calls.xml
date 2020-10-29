@@ -65,12 +65,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFF"
+        android:padding="0dp"
+        app:tabTextAppearance="@style/CustomTextStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:tabSelectedTextColor="#207C24"
-        app:tabTextColor="#7BB834"
-        app:tabIndicator="@color/colorPrimaryDark">
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextColor="@color/black">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/Intraday"
@@ -82,7 +83,8 @@
             android:id="@+id/Swing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swing Trades" />
+            android:text="Swing Trades"
+            />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/long_term"

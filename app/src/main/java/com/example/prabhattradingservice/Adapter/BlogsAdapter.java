@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prabhattradingservice.BlogsSeeAll;
+import com.example.prabhattradingservice.ClickListener.GalleryClickListner;
 import com.example.prabhattradingservice.Model.BlogsModel;
 import com.example.prabhattradingservice.R;
 import com.squareup.picasso.Picasso;
@@ -23,10 +24,11 @@ import java.util.ArrayList;
 public class BlogsAdapter extends RecyclerView.Adapter<BlogsAdapter.MyViewHolder> {
 private  ArrayList<BlogsModel>blogsModels;
  private Context context;
-
-    public BlogsAdapter(ArrayList<BlogsModel> blogsModels, Context context) {
+    private GalleryClickListner galleryClickListner;
+    public BlogsAdapter(ArrayList<BlogsModel> blogsModels,/* Context context,*/GalleryClickListner galleryClickListner) {
         this.blogsModels = blogsModels;
-        this.context = context;
+     //   this.context = context;
+        this.galleryClickListner=galleryClickListner;
     }
 
     public BlogsAdapter() {
@@ -42,27 +44,29 @@ private  ArrayList<BlogsModel>blogsModels;
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Picasso.get().load(blogsModels.get(position).getBlogsImage()).into(holder.BlogsImage);
+
        String image=blogsModels.get(position).getBlogsImage();
         String heading1= blogsModels.get(position).getH1();
         String heading2= blogsModels.get(position).getH2();
         String id=blogsModels.get(position).getId();
+
+        Picasso.get().load(image).into(holder.BlogsImage);
         holder.h1.setText(heading1);
         holder.h2.setText(heading2);
 
-         holder.seeAll.setOnClickListener(new View.OnClickListener() {
+         /*holder.seeAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(context, BlogsSeeAll.class);
+                 Intent intent =new Intent(context, BlogsSeeAll.class);
                  intent.putExtra("id"," "+id);
-                 intent.putExtra("image"," "+image);
-                intent.putExtra(" h1" ," "+heading1);
-                intent.putExtra("h2"," "+ heading2);
-
+                *//* intent.putExtra("image"," "+image);
+                 intent.putExtra(" h1" ," "+heading1);
+                 intent.putExtra("h2"," "+ heading2);
+*//*
                // Toast.makeText(context, ""+image+heading1, Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
@@ -80,6 +84,13 @@ private  ArrayList<BlogsModel>blogsModels;
             h1=itemView.findViewById(R.id.blogs_h1);
             h2=itemView.findViewById(R.id.blogs_h2);
             seeAll=itemView.findViewById(R.id.btnSeeAll);
+
+            seeAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    galleryClickListner.onItemClickListener(getAdapterPosition());
+                }
+            });
 
         }
     }

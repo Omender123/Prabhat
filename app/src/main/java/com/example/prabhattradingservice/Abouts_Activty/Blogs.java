@@ -22,6 +22,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Adapter.BlogsAdapter;
 import com.example.prabhattradingservice.Adapter.GallryAdapter;
+import com.example.prabhattradingservice.BlogsSeeAll;
+import com.example.prabhattradingservice.ClickListener.GalleryClickListner;
 import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
 import com.example.prabhattradingservice.Model.BlogsModel;
@@ -34,8 +36,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Blogs extends AppCompatActivity {
-ActionBar actionBar;
+public class Blogs extends AppCompatActivity implements GalleryClickListner {
+    ActionBar actionBar;
     RecyclerView recyclerView;
     RequestQueue requestQueue;
     BlogsAdapter blogsAdapter;
@@ -53,7 +55,7 @@ ActionBar actionBar;
         recyclerView=findViewById(R.id.BlogsRecyclerView);
 
         requestQueue= Volley.newRequestQueue(Blogs.this);
-      blogsModels=new ArrayList<BlogsModel>();
+        blogsModels=new ArrayList<BlogsModel>();
         StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -74,7 +76,7 @@ ActionBar actionBar;
                         modalData.setId(id);
                         modalData.setBlogsImage(image);
                        modalData.setH1(heading);
-                       modalData.setH2(details+"........");
+                       modalData.setH2(details);
                         blogsModels.add(modalData);
                         //Toast.makeText(getApplicationContext(), ""+jsonArray, Toast.LENGTH_SHORT).show();
                     }
@@ -143,4 +145,22 @@ ActionBar actionBar;
 
     }
 
+    @Override
+    public void onItemClickListener(int position) {
+
+        String images=blogsModels.get(position).getBlogsImage();
+        String heading1= blogsModels.get(position).getH1();
+        String heading2= blogsModels.get(position).getH2();
+
+        Intent intent =new Intent(Blogs.this, BlogsSeeAll.class);
+
+        intent.putExtra("img"," "+images);
+        intent.putExtra("h1" ," "+heading1);
+        intent.putExtra("h2"," "+ heading2);
+
+        // Toast.makeText(context, ""+image+heading1, Toast.LENGTH_SHORT).show();
+        startActivity(intent);
+
+
+    }
 }

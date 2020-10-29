@@ -1,12 +1,18 @@
 package com.example.prabhattradingservice;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.prabhattradingservice.Abouts_Activty.Blogs;
 import com.example.prabhattradingservice.Adapter.BlogsAdapter;
+import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.Model.BlogsModel;
 import com.squareup.picasso.Picasso;
 
@@ -31,6 +38,7 @@ import java.util.ArrayList;
 public class BlogsSeeAll extends AppCompatActivity {
 ImageView images;
 TextView h1,h2;
+ActionBar actionBar;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,20 +47,43 @@ TextView h1,h2;
          h1=findViewById(R.id.blogsSeeall_h1);
          h2=findViewById(R.id.blogsSeeall_h2);
 
-        String id=getIntent().getStringExtra("id");
-        String image = getIntent().getStringExtra("image");
-        String head1=getIntent().getStringExtra("h1");
-        String head2=getIntent().getStringExtra("h1");
+         Toast.makeText(this, ""+getIntent().getStringExtra("image"), Toast.LENGTH_SHORT).show();
+         String image=getIntent().getStringExtra("img");
+         Picasso.get().load("https://prabhattrading.com//wp-content//uploads//2020//04//banner3-1400x400.png").into(images);
+         h1.setText(getIntent().getStringExtra("h1"));
+         h2.setText(getIntent().getStringExtra("h2"));
+         actionBarSetup();
 
-         Toast.makeText(this, ""+id+image+head1, Toast.LENGTH_SHORT).show();
-/*
+    }
 
-        // Picasso.get().load(blogsModel.getBlogsImage()).into(image);
-        h1.setText(head1);
-        h2.setText(head2);
-*/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       /* if (item.getItemId()==android.R.id.home){
+            finish();
 
+        }*/
 
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // todo: goto back activity from here
 
+                Intent intent = new Intent(BlogsSeeAll.this, Blogs.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    private void actionBarSetup() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setTitle(getIntent().getStringExtra("h1"));
+        }
     }
 }

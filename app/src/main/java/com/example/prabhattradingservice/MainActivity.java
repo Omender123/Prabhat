@@ -217,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 public void share(){
+
     ApplicationInfo app = getApplicationContext().getApplicationInfo();
     String filePath = app.publicSourceDir;
     Intent sharingIntent = new Intent(Intent.ACTION_SEND);

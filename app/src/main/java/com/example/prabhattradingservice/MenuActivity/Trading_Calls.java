@@ -56,6 +56,7 @@ public class Trading_Calls extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 1) {
+
                   /*  tabLayout.setBackgroundColor(ContextCompat.getColor(Trading_Calls.this,
                             R.color.colorAccent));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
