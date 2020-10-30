@@ -63,9 +63,9 @@ public class Gallery extends AppCompatActivity implements GalleryClickListner {
 
         Log.e("Width",""+ Resources.getSystem().getDisplayMetrics().widthPixels);
         imagePopup  = new ImagePopup(this);
-        imagePopup.setBackgroundColor(Color.BLACK);
+        imagePopup.setBackgroundColor(Color.GRAY);
         imagePopup.setFullScreen(false);
-        imagePopup.setHideCloseIcon(true);
+        imagePopup.setHideCloseIcon(false);
         imagePopup.setImageOnClickClose(true);
 
 

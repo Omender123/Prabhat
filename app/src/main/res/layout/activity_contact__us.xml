@@ -218,7 +218,7 @@
                         />
 
                     <TextView
-                        android:text="VISIT OUR WEBSITE "
+                        android:text="www.prabhattrading.com"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"

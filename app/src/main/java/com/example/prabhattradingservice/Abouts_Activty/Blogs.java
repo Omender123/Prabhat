@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +26,7 @@ import com.example.prabhattradingservice.Adapter.BlogsAdapter;
 import com.example.prabhattradingservice.Adapter.GallryAdapter;
 import com.example.prabhattradingservice.BlogsSeeAll;
 import com.example.prabhattradingservice.ClickListener.GalleryClickListner;
+import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.MenuActivity.About;
 import com.example.prabhattradingservice.MenuActivity.Gallery;
 import com.example.prabhattradingservice.Model.BlogsModel;
@@ -37,6 +40,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class Blogs extends AppCompatActivity implements GalleryClickListner {
+    ImageView iv_back;
     ActionBar actionBar;
     RecyclerView recyclerView;
     RequestQueue requestQueue;
@@ -50,7 +54,7 @@ public class Blogs extends AppCompatActivity implements GalleryClickListner {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blogs);
-        actionBarSetup();
+     //   actionBarSetup();
 
         recyclerView=findViewById(R.id.BlogsRecyclerView);
 
@@ -101,6 +105,21 @@ public class Blogs extends AppCompatActivity implements GalleryClickListner {
             }
         });
         requestQueue.add(stringRequest);
+
+
+        iv_back = (ImageView) findViewById(R.id.iv_back4);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Blogs.this, About.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
     }
     @Override

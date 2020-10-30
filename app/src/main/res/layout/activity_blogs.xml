@@ -6,8 +6,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Abouts_Activty.Blogs">
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
+        <ImageView
+            android:id="@+id/iv_back4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/space40"
+            android:src="@drawable/ic_action_back" />
+
+        <TextView
+            android:id="@+id/textGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@+id/iv_back4"
+            android:layout_toRightOf="@+id/iv_back4"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center_horizontal"
+            android:text="Blogs"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="35sp" />
+
+    </RelativeLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/BlogsRecyclerView"
         android:background="#C6C6C6"
         android:layout_width="match_parent"

@@ -73,12 +73,11 @@
         <WebView
             android:id="@+id/marqueeWebView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
            />
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="10dp"
             android:background="@color/grey_light_secondary" />
 
  <RelativeLayout
@@ -176,7 +175,6 @@
                 android:id="@+id/online"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginTop="@dimen/space5"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/online_icon" />
 

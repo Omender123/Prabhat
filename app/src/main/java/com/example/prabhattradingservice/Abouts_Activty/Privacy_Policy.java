@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 public class Privacy_Policy extends AppCompatActivity {
 ActionBar actionBar;
     WebView webView;
+    ImageView iv_back;
     KProgressHUD progressDialog;
     RequestQueue requestQueue;
     TextView Privacy;
@@ -86,7 +89,20 @@ ActionBar actionBar;
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
 
-        actionBarSetup();
+      //  actionBarSetup();
+
+        iv_back = (ImageView) findViewById(R.id.iv_back4);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), About.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

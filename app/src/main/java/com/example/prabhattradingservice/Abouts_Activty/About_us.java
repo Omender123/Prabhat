@@ -19,7 +19,9 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +50,7 @@ TextView about;
 RequestQueue requestQueue;
 String url="http://prabhattrading.com/apis/about-us";
     WebView webView;
-
+    ImageView iv_back;
 
     @SuppressLint("WrongConstant")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -56,13 +58,13 @@ String url="http://prabhattrading.com/apis/about-us";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        actionBarSetup();
-        /*webView= findViewById(R.id.AboutWebView);
+       // actionBarSetup();
+          webView= findViewById(R.id.AboutWebView);
         String url="file:///android_asset/About_Us.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(url);
-*/
-        about=findViewById(R.id.about);
+
+    /*    about=findViewById(R.id.about);
   requestQueue= Volley.newRequestQueue(getApplicationContext());
 
         progressDialog=  KProgressHUD.create(About_us.this)
@@ -102,7 +104,7 @@ String url="http://prabhattrading.com/apis/about-us";
   });
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
-
+*/
        /* firstTxt = findViewById(R.id.firstTxt1);
         String text = getResources().getString(R.string.first);
         SpannableString ss = new SpannableString(text);
@@ -121,7 +123,19 @@ String url="http://prabhattrading.com/apis/about-us";
         ss.setSpan(styleSpan, 0, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(styleSpan1, 137, 144, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan(styleSpan2, 254, 277, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
 */
+        iv_back = (ImageView) findViewById(R.id.iv_back4);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), About.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override

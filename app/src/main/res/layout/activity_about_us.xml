@@ -1,82 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Abouts_Activty.About_us">
 
-    <LinearLayout
+    <RelativeLayout
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/space40"
+            android:src="@drawable/ic_action_back" />
+        <TextView
+            android:id="@+id/textGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_back4"
+            android:layout_toRightOf="@+id/iv_back4"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center_horizontal"
+            android:text="About Us Details"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            >
-
-            <RelativeLayout
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="2dp"
-                android:background="#4c4c4c"
-                android:baselineAligned="false">
+                android:layout_margin="5dp"
+                >
 
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="@dimen/dp_10"
-                    android:background="#666"
-                    android:src="@mipmap/profile" />
-
-                <TextView
-                    android:id="@+id/name"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="29dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toStartOf="@+id/image"
-                    android:layout_toLeftOf="@+id/image"
-                    android:gravity="center_horizontal"
-                    android:text="Prabhat Kumar"
-                    android:textAlignment="center"
-                    android:textColor="#ed7f20"
-                    android:textSize="20dp" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:background="#4c4c4c"
+                    android:baselineAligned="false">
 
-                <TextView
-                    android:id="@+id/founder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/name"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="22dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_toStartOf="@+id/image"
-                    android:layout_toLeftOf="@+id/image"
-                    android:gravity="center_horizontal"
-                    android:text="(Founder-Prabhat Trading Service)"
-                    android:textAlignment="center"
-                    android:textColor="#FFF"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="@dimen/dp_10"
+                        android:background="#666"
+                        android:src="@mipmap/profile" />
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <View
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toStartOf="@+id/image"
+                        android:layout_toLeftOf="@+id/image"
+                        android:gravity="center_horizontal"
+                        android:text="Prabhat Kumar"
+                        android:textAlignment="center"
+                        android:textColor="#ed7f20"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/founder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginRight="22dp"
+                        android:layout_toStartOf="@+id/image"
+                        android:layout_toLeftOf="@+id/image"
+                        android:gravity="center_horizontal"
+                        android:text="(Founder-Prabhat Trading Service)"
+                        android:textAlignment="center"
+                        android:textColor="#FFF"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/grey_light_secondary" />
+
+          <!-- <TextView
+            android:id="@+id/about"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="3dp"
-            android:background="@color/grey_light_secondary" />
-        <TextView
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:textSize="12dp"
+            android:textColor="#333"
+            android:layout_margin="5dp"
+               />-->
+
+            <WebView
+                android:id="@+id/AboutWebView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+          <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_margin="5dp"
+              >
+
+              <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_margin="2dp"
+                  android:background="#4c4c4c"
+                  android:baselineAligned="false">
+
+                  <ImageView
+                      android:id="@+id/image"
+                      android:layout_width="100dp"
+                      android:layout_height="100dp"
+                      android:layout_alignParentRight="true"
+                      android:layout_margin="@dimen/dp_10"
+                      android:background="#666"
+                      android:src="@mipmap/profile" />
+
+                  <TextView
+                      android:id="@+id/name"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_alignParentTop="true"
+                      android:layout_marginLeft="0dp"
+                      android:layout_marginTop="29dp"
+                      android:layout_marginEnd="10dp"
+                      android:layout_marginRight="10dp"
+                      android:layout_toStartOf="@+id/image"
+                      android:layout_toLeftOf="@+id/image"
+                      android:gravity="center_horizontal"
+                      android:text="Prabhat Kumar"
+                      android:textAlignment="center"
+                      android:textColor="#ed7f20"
+                      android:textSize="20dp" />
+
+                  <TextView
+                      android:id="@+id/founder"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/name"
+                      android:layout_alignParentLeft="true"
+                      android:layout_marginLeft="0dp"
+                      android:layout_marginTop="12dp"
+                      android:layout_marginEnd="22dp"
+                      android:layout_marginRight="22dp"
+                      android:layout_toStartOf="@+id/image"
+                      android:layout_toLeftOf="@+id/image"
+                      android:gravity="center_horizontal"
+                      android:text="(Founder-Prabhat Trading Service)"
+                      android:textAlignment="center"
+                      android:textColor="#FFF"
+                      android:textSize="12dp"
+                      android:textStyle="bold" />
+
+              </RelativeLayout>
+          </androidx.cardview.widget.CardView>
+          <View
+              android:layout_width="match_parent"
+              android:layout_height="3dp"
+              android:layout_marginTop="3dp"
+              android:background="@color/grey_light_secondary" />
+      &lt;!&ndash;   <TextView
             android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +208,11 @@
             android:textColor="#333"
             android:layout_margin="5dp"
 
-            />
+            />&ndash;&gt;
+         <WebView
+             android:id="@+id/AboutWebView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"/>
     </LinearLayout>
-
-</ScrollView>
+  -->
+</LinearLayout>

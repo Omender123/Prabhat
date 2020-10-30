@@ -10,21 +10,38 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.example.prabhattradingservice.Abouts_Activty.Blogs;
 import com.example.prabhattradingservice.MainActivity;
 import com.example.prabhattradingservice.R;
 
 public class Calculator extends AppCompatActivity {
 ActionBar actionBar;
 RecyclerView recyclerView;
+    ImageView iv_back;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-        actionBarSetup();
+      //  actionBarSetup();
 
 
-    }
+         iv_back = (ImageView) findViewById(R.id.iv_back4);
+         iv_back.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+
+                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                 startActivity(intent);
+                 finish();
+             }
+         });
+
+
+     }
 
    // Action bar change tittle
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

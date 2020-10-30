@@ -26,26 +26,31 @@
                 android:layout_marginLeft="@dimen/space20"
                 android:layout_marginTop="@dimen/space40"/>
 
+
+            <TextView
+                android:id="@+id/tv_sign_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="51dp"
+                android:layout_toEndOf="@+id/iv_back"
+                android:text="Fill the Query Form"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/txt22" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_back"
-                android:layout_marginTop="@dimen/space40"
+                android:layout_marginTop="@dimen/dp_40"
                 android:paddingLeft="@dimen/space20"
                 android:paddingRight="@dimen/space20"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tv_sign_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/iv_back"
-                    android:layout_marginBottom="@dimen/space40"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Fill the Query Form"
-                    android:textSize="@dimen/txt22"
-                    android:textColor="@android:color/white" />
-                <LinearLayout
+                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
