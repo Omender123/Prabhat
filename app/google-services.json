@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71253314074",
+    "firebase_url": "https://prabhat-trading-service.firebaseio.com",
+    "project_id": "prabhat-trading-service",
+    "storage_bucket": "prabhat-trading-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71253314074:android:de1bef3438924dbc171fa3",
+        "android_client_info": {
+          "package_name": "com.example.prabhattradingservice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71253314074-ae46bglfc85umh7crd23bicl0p40u9c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0eSF94m-TzbUUHrJMTcAw9GhtW0_VGy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71253314074-ae46bglfc85umh7crd23bicl0p40u9c8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
