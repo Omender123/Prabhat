@@ -54,7 +54,7 @@
                 android:text="Trading Calls "
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
         </RelativeLayout>
     </LinearLayout>

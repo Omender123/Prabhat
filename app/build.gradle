@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
 
 
 android {
@@ -43,6 +44,8 @@ dependencies {
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
     implementation 'com.jakewharton:butterknife:10.1.0'
 
+    implementation 'net.objecthunter:exp4j:0.4.8'
+
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -60,6 +63,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth:19.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'

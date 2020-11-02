@@ -61,10 +61,10 @@ public class Gallery extends AppCompatActivity implements GalleryClickListner {
 
        // Picasso.setSingletonInstance(new Picasso.Builder(this).build());
 
-        Log.e("Width",""+ Resources.getSystem().getDisplayMetrics().widthPixels);
+       // Log.e("Width",""+ Resources.getSystem().getDisplayMetrics().widthPixels);
         imagePopup  = new ImagePopup(this);
-        imagePopup.setBackgroundColor(Color.GRAY);
-        imagePopup.setFullScreen(false);
+        imagePopup.setBackgroundColor(Color.BLACK);
+        imagePopup.setFullScreen(true);
         imagePopup.setHideCloseIcon(false);
         imagePopup.setImageOnClickClose(true);
 

@@ -19,4 +19,7 @@
     <color name="txt_hint">#33FFFFFF</color>
     <color name="navy">#021430</color>
 
+    <color name="actionButton">#F57C00</color>
+    <color name="numberButton">#455A64</color>
+
 </resources>

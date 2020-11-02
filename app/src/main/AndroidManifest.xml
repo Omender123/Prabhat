@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BlogsSeeAll"></activity>
+
+        <activity android:name=".BlogsSeeAll" />
         <activity android:name=".Fragments.PositionalSeeall" />
         <activity
             android:name=".Fragments.PositionalWebView"
@@ -51,15 +52,20 @@
         <activity
             android:name=".Login_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Abouts_Activty.Blogs"
-            android:theme="@style/AppTheme.NoActionBar"   />
-        <activity android:name=".Abouts_Activty.Returns"
+        <activity
+            android:name=".Abouts_Activty.Blogs"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Abouts_Activty.Terms"
+        <activity
+            android:name=".Abouts_Activty.Returns"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Abouts_Activty.Privacy_Policy"
+        <activity
+            android:name=".Abouts_Activty.Terms"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Abouts_Activty.Disclaimer"
+        <activity
+            android:name=".Abouts_Activty.Privacy_Policy"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Abouts_Activty.Disclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".QueryForm"
@@ -70,16 +76,18 @@
         <activity
             android:name=".MenuActivity.Course"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuActivity.Calculator"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".MenuActivity.Calculator"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuActivity.Gallery"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuActivity.Trading_Calls"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Abouts_Activty.About_us"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Abouts_Activty.About_us"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuActivity.Contact_Us"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -88,6 +96,7 @@
             android:theme="@style/AppTheme.NoActionBar1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

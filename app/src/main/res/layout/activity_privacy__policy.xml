@@ -36,7 +36,7 @@
             android:text="Privacy Policy"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 
