@@ -106,6 +106,13 @@
         <activity
             android:name=".ErrorScreen"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_KrN9yMRkKh9pwG"
+            />
+
+
     </application>
 
 </manifest>

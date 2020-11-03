@@ -3,17 +3,25 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 
 
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.example.prabhattradingservice"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,6 +53,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
 
     implementation 'net.objecthunter:exp4j:0.4.8'
+// Rozerpay gateway
+    implementation 'com.razorpay:checkout:1.5.16'
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'

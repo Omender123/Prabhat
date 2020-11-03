@@ -13,13 +13,16 @@
     </style>
 
 
-   // parent="@android:style/TextAppearance.Widget.TabWidget"
-    <style name="CustomTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+   // parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+    <style name="CustomTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget" >
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">false</item>
 
     </style>
 
+    <style name="MyNavigationViewItemStyle" parent="AppTheme">
+        <item name="listPreferredItemPaddingLeft">0dp</item>
+    </style>
 
 
     <style name="ActionButtonStyle">

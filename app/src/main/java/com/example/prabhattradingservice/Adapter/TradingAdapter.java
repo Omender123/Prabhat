@@ -1,6 +1,8 @@
 package com.example.prabhattradingservice.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,8 @@ import com.example.prabhattradingservice.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 public class TradingAdapter extends RecyclerView.Adapter<TradingAdapter.MyViewHolder> {
     private ArrayList<BlogsModel> blogsModels;
@@ -63,13 +67,17 @@ public class TradingAdapter extends RecyclerView.Adapter<TradingAdapter.MyViewHo
 
 
 
+        @SuppressLint("WrongConstant")
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             TradingImage = itemView.findViewById(R.id.trading_image);
             h1 = itemView.findViewById(R.id.trading_h1);
             h2 = itemView.findViewById(R.id.trading_h2);
 
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                h1.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+                h2.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+            }
         }
     }
 }

@@ -98,7 +98,7 @@
      <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginStart="10dp"
+         android:layout_marginStart="1dp"
          android:layout_toEndOf="@+id/price"
          android:padding="@dimen/space5"
          android:text="PRICE ACTION STRATEGY "
@@ -140,7 +140,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             >
             <ImageView
@@ -154,7 +154,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="1dp"
                 android:layout_toEndOf="@+id/course"
                 android:padding="@dimen/space5"
                 android:text="COURSE "
@@ -166,6 +166,7 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:layout_marginTop="0dp"
            android:layout_marginRight="@dimen/space5"
            android:layout_marginLeft="@dimen/space5"
            android:orientation="vertical">
@@ -271,7 +272,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="1dp"
         android:layout_toEndOf="@+id/indi"
 
         android:padding="@dimen/space5"
@@ -349,7 +350,7 @@
                  android:layout_marginTop="3dp"
                   android:paddingBottom="3dp"
                  android:layout_marginBottom="5dp"
-                 app:cardCornerRadius="5dp">
+                 app:cardCornerRadius="1dp">
                  <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"

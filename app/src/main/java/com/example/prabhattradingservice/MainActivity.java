@@ -259,7 +259,7 @@ public void share(){
        alertDialogBuilder.setTitle("Prabhat Trading Service");
 
        // set dialog message
-       alertDialogBuilder.setIcon(R.mipmap.application_icon);
+       alertDialogBuilder.setIcon(R.mipmap.ic_launcher_round);
        alertDialogBuilder
                .setMessage("Are you sure to Logout !!!!!")
                .setCancelable(false)
@@ -294,5 +294,12 @@ public void share(){
         startActivity(intent);
         finish();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //check Internet Connection
+        new CheckInternetConnection(this).checkConnection();
     }
 }

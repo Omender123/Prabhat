@@ -9,6 +9,7 @@
     tools:context=".MenuActivity.Gallery">
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
@@ -19,15 +20,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-53dp">
 
         <RelativeLayout
-            android:layout_weight="2"
+            android:id="@+id/relativelayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="2">
 
             <ImageView
                 android:id="@+id/iv_back4"
@@ -56,11 +61,28 @@
                 android:textSize="30sp" />
 
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D1D1D1"
+        android:orientation="vertical"
+        android:layout_marginTop="115dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_gallery"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
