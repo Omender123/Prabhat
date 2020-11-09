@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -65,12 +65,13 @@
         android:id="@+id/tablayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
         android:background="#FFF"
         android:padding="0dp"
-        app:tabMode="auto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:tabMode="auto"
         app:tabSelectedTextColor="@color/colorPrimary"
         app:tabTextColor="@color/black">
 
@@ -79,15 +80,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text=" Intraday Trades"
-           />
+            android:text=" Intraday Trades" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/Swing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swing Trades"
-            />
+            android:text="Swing Trades" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/long_term"
@@ -100,10 +99,14 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tablayout1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         app:layout_constraintEnd_toEndOf="@+id/line1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tablayout1" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

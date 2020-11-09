@@ -42,6 +42,8 @@
                   android:title="About Us"/>
 
               <item
+                  android:checkable="false"
+                  android:checked="false"
                   android:id="@+id/nav_Share_us"
                   android:icon="@drawable/ic_baseline_share_24"
                   android:title="Share Us"/>
@@ -50,6 +52,8 @@
                   android:icon="@drawable/ic_baseline_feedback_24"
                   android:title="Feedback"/>
               <item
+                  android:checkable="false"
+                  android:checked="false"
                   android:id="@+id/nav_Logout"
                   android:icon="@drawable/ic_power_button"
                   android:title="Logout"/>

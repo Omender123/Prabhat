@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
+/*
 apply plugin: 'com.google.gms.google-services'
+*/
 apply plugin: 'kotlin-android'
 
 
@@ -16,7 +18,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.prabhattradingservice"
+        applicationId "com.prabhat.prabhattradingservice"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -24,10 +26,16 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    lintOptions {
+        abortOnError false
+    }
     buildTypes {
+        debug {
+            debuggable false
+        }
         release {
             minifyEnabled false
+            testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

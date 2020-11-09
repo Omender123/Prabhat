@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prabhattradingservice">
+    package="com.prabhat.prabhattradingservice">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,90 +9,91 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:debuggable="false"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".BlogsSeeAll" />
-        <activity android:name=".Fragments.PositionalSeeall" />
+        <activity android:name="com.prabhat.prabhattradingservice.BlogsSeeAll" />
+        <activity android:name="com.prabhat.prabhattradingservice.Fragments.PositionalSeeall" />
         <activity
-            android:name=".Fragments.PositionalWebView"
+            android:name="com.prabhat.prabhattradingservice.Fragments.PositionalWebView"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Fragments.IndicatorWebView"
+            android:name="com.prabhat.prabhattradingservice.Fragments.IndicatorWebView"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Fragments.IndicatorSeeAll" />
+        <activity android:name="com.prabhat.prabhattradingservice.Fragments.IndicatorSeeAll" />
         <activity
-            android:name=".Fragments.PriceWebView"
+            android:name="com.prabhat.prabhattradingservice.Fragments.PriceWebView"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Fragments.PriceSeeAll" />
+        <activity android:name="com.prabhat.prabhattradingservice.Fragments.PriceSeeAll" />
         <activity
-            android:name=".ProfileActivty"
+            android:name="com.prabhat.prabhattradingservice.ProfileActivty"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CourseScreen.OfflineCourse" />
-        <activity android:name=".CourseScreen.OnlineCourse" />
+        <activity android:name="com.prabhat.prabhattradingservice.CourseScreen.OfflineCourse" />
+        <activity android:name="com.prabhat.prabhattradingservice.CourseScreen.OnlineCourse" />
         <activity
-            android:name=".MenuActivity.FeedBack_Activity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ForgetPassword_actiicty"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.FeedBack_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Verification_activity"
+            android:name="com.prabhat.prabhattradingservice.ForgetPassword_actiicty"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Registration_Activity"
+            android:name="com.prabhat.prabhattradingservice.Verification_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login_Activity"
+            android:name="com.prabhat.prabhattradingservice.Registration_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.Blogs"
+            android:name="com.prabhat.prabhattradingservice.Login_Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.Returns"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.Blogs"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.Terms"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.Returns"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.Privacy_Policy"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.Terms"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.Disclaimer"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.Privacy_Policy"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QueryForm"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.Disclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.About"
+            android:name="com.prabhat.prabhattradingservice.QueryForm"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.Course"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.About"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.Calculator"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.Course"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.Gallery"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.Calculator"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.Trading_Calls"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.Gallery"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Abouts_Activty.About_us"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.Trading_Calls"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MenuActivity.Contact_Us"
+            android:name="com.prabhat.prabhattradingservice.Abouts_Activty.About_us"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Splash_Screen"
+            android:name="com.prabhat.prabhattradingservice.MenuActivity.Contact_Us"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.prabhat.prabhattradingservice.Splash_Screen"
             android:theme="@style/AppTheme.NoActionBar1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,10 +102,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.prabhat.prabhattradingservice.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ErrorScreen"
+            android:name="com.prabhat.prabhattradingservice.ErrorScreen"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
